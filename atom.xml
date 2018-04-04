@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Sevge&#39;s Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-04-04T05:23:22.185Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Sevge</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>这是我在hexo的第一篇文章！Hexo+Gitpage搭建日记</title>
+    <link href="http://yoursite.com/2018/03/20/hello-world-1/"/>
+    <id>http://yoursite.com/2018/03/20/hello-world-1/</id>
+    <published>2018-03-20T10:39:38.831Z</published>
+    <updated>2018-04-04T05:23:22.185Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Hexo-Gitpage搭建日记"><a href="#Hexo-Gitpage搭建日记" class="headerlink" title="Hexo+Gitpage搭建日记"></a>Hexo+Gitpage搭建日记</h2><p>操作还是挺简单的，具体参照: <a href="https://blog.csdn.net/csdn_yudong/article/details/70837277" target="_blank" rel="noopener">click here</a><br>重复的轮子就不造了,感谢原作者”Yu丶”的详尽教程</p><h2 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h2><p>这其中必须得提一下部署过程中踩过的坑，纠结了很久。。<br>前面的搭建都没有问题，到最后上传部署到gitpage时，<br>运行hexo d没有任何提示。就像这样<br><img src="https://s1.ax1x.com/2018/03/22/9H5mOP.png" alt="1.png"><br>就是这个东西！deploy选项下面，<br>在配置项的前面必须有两个空格，冒号后面必须有一个空格！<br><img src="https://s1.ax1x.com/2018/03/22/9H50kF.png" alt="2.png"><br>所以说，格式非常重要，必须一丝不苟地对待…<br>不管怎么说，作为菜鸟的我也开始了写博客的旅程。<br>今后还请多多指教。</p><p>最近访客</p><div class="ds-recent-visitors" data-num-items="39" data-avatar-size="40" id="ds-recent-visitors"></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Hexo-Gitpage搭建日记&quot;&gt;&lt;a href=&quot;#Hexo-Gitpage搭建日记&quot; class=&quot;headerlink&quot; title=&quot;Hexo+Gitpage搭建日记&quot;&gt;&lt;/a&gt;Hexo+Gitpage搭建日记&lt;/h2&gt;&lt;p&gt;操作还是挺简单的，具体参照:
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2018/03/20/hello-world/"/>
+    <id>http://yoursite.com/2018/03/20/hello-world/</id>
+    <published>2018-03-20T09:26:01.090Z</published>
+    <updated>2018-03-20T09:26:01.090Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
