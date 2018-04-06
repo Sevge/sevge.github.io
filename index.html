@@ -16,8 +16,6 @@
     <title>Sevge&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
-    
     
     <meta name="keywords" content="">
     <meta name="description" content="My Blog">
@@ -33,7 +31,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/">
     <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
@@ -50,54 +48,19 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+          <img src="/">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Sevge</h5>
-          <a href="mailto:sevge6582@gmail.com" title="sevge6582@gmail.com" class="mail">sevge6582@gmail.com</a>
+          <a href="mailto:undefined" class="mail">
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
-        
-            <li class="waves-block waves-effect active">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/sevge" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/about"  >
-                <i class="icon icon-lg icon-link"></i>
-                关于
-              </a>
-            </li>
         
       </ul>
     </div>
@@ -112,20 +75,6 @@
         </a>
         <div class="flex-col header-title ellipsis">Sevge&#39;s Blog</div>
         
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
         
     </div>
 </header>
@@ -148,6 +97,47 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-crunch"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-04-07 13:05:17" datetime="2018-04-07T05:05:17.000Z"  itemprop="datePublished">2018-04-07</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Kali/">Kali</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/04/07/crunch/">密码生成工具&#34;Crunch&#34;的使用</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        很多时候网络上下载的、系统或软件自带的字典效果不尽如人...
+    
+
+        <a href="/2018/04/07/crunch/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-vmware-3-mode"
@@ -178,9 +168,7 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        前言新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接
-Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所以网络功能也无异于主机。并且和主机处于同一网段。
-原理桥接模...
+        前言新来的学弟学妹们没有相关的计算机网络概念，在VMw...
     
 
         <a href="/2018/04/05/vmware-3-mode/" class="post-more waves-effect waves-button">
@@ -221,12 +209,7 @@ Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        部署操作还是挺简单的，具体参照: click here重复的轮子就不造了,感谢原作者”Yu丶”的详尽教程
-踩过的坑这其中必须得提一下部署过程中踩过的坑，纠结了很久。。前面的搭建环境都没有问题，到最后上传部署到gitpage时，运行hexo d没有任何提示。就像这样:
-                
-                    
-                    
-    ...
+        部署操作还是挺简单的，具体参照: click here...
     
 
         <a href="/2018/03/20/hello-world-1/" class="post-more waves-effect waves-button">
@@ -265,8 +248,7 @@ Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
+        Welcome to Hexo! This is yo...
     
 
         <a href="/2018/03/20/hello-world/" class="post-more waves-effect waves-button">
@@ -287,15 +269,6 @@ Qu...
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -319,55 +292,9 @@ Qu...
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/&title=Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/&title=Sevge's Blog&source=My Blog" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Sevge's Blog&url=https://sevge.github.io/about/&via=https://sevge.github.io/about" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB0ElEQVR42u3awY7DIAxF0f7/T7fSaBYjtdD7MDgZ6bKq0oQcsrCMzeOBx/Nn/P39PuZPpf+Whly5csvc53SMpp4TR8/O50cfQq5cuY1cHrx4hJkvdX7P8LpcuXJvxiXhrx7s5MqV+7+45Er9Wbly5d6HSzY/JIkhxY6mvZpcuXIL3LWC6d7fx+u7cuXK3dSV4EGNl07W3vs7p1y5clu4a22SSqjiSx0uW65cuRdxeWGUHL/gn2O+JLly5XZyeThLW61r19Hy5MqVe4xb2dKk6Usa+L5se+TKlXuMm7ZUedN07XMEoVOuXLnHuHsPXvCsKkUfOSciV65cnCfwVms6Dy+dyJUr91ouD2GdRy5K31uuXLmbuPVWByl21DdOcuXK7eHyUkXaAuH3B+mRXLlyW7i7iiNp4kI+xDDMyZUr9zA3PXSVJig8eUIGuXLlNnLjow9hCZVvq76USOTKldvI5SNtilQOXsRZkly5cjdx04DC2y288MqPa8iVK7eTmwYvvlYyTxr+5MqV28mtHMXgC043VB/ulytX7s24pMyRJj3x2+XKlXtj7lr6sta82RDI5MqVu8StTLRWYE2LL3Llyu3kphORqMKbJYQoV67cRu4LNuYGHL9c3IsAAAAASUVORK5CYII=" alt="微信分享二维码">
-</div>
-
-
-
-
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 
 
 </script>
@@ -375,50 +302,11 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 <script src="/js/main.min.js?v=1.7.2"></script>
 
 
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 
 
 
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
 
 
 
