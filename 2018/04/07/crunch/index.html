@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>密码生成工具&#34;Crunch&#34;的使用 | Sevge&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="很多时候网络上下载的、系统或软件自带的字典效果不尽如人意，这个时候我们可能就需要根据自己的需求生成一个按照我们已经知道的信息来组合的字典。 介绍Crunch是一种创建密码字典工具，该字典常用来暴力破解。使用crunch工具生成的密码可以发送到终端、文件或者另一个程序。crunch默认安装在kali环境中，Crunch可以按照指定的规则生成密码字典，生成的字典字符序列可以输出到屏幕、文件或重定向到另">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码生成工具&quot;Crunch&quot;的使用">
+<meta property="og:url" content="https://sevge.github.io/about/2018/04/07/crunch/index.html">
+<meta property="og:site_name" content="Sevge&#39;s Blog">
+<meta property="og:description" content="很多时候网络上下载的、系统或软件自带的字典效果不尽如人意，这个时候我们可能就需要根据自己的需求生成一个按照我们已经知道的信息来组合的字典。 介绍Crunch是一种创建密码字典工具，该字典常用来暴力破解。使用crunch工具生成的密码可以发送到终端、文件或者另一个程序。crunch默认安装在kali环境中，Crunch可以按照指定的规则生成密码字典，生成的字典字符序列可以输出到屏幕、文件或重定向到另">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-06T05:10:21.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="密码生成工具&quot;Crunch&quot;的使用">
+<meta name="twitter:description" content="很多时候网络上下载的、系统或软件自带的字典效果不尽如人意，这个时候我们可能就需要根据自己的需求生成一个按照我们已经知道的信息来组合的字典。 介绍Crunch是一种创建密码字典工具，该字典常用来暴力破解。使用crunch工具生成的密码可以发送到终端、文件或者另一个程序。crunch默认安装在kali环境中，Crunch可以按照指定的规则生成密码字典，生成的字典字符序列可以输出到屏幕、文件或重定向到另">
+    
+        <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Sevge</h5>
+          <a href="mailto:sevge6582@gmail.com" title="sevge6582@gmail.com" class="mail">sevge6582@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/sevge" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">密码生成工具&#34;Crunch&#34;的使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">密码生成工具&#34;Crunch&#34;的使用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-07T05:05:17.000Z" itemprop="datePublished" class="page-time">
+  2018-04-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Kali/">Kali</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-crunch"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">密码生成工具"Crunch"的使用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-07 13:05:17" datetime="2018-04-07T05:05:17.000Z"  itemprop="datePublished">2018-04-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Kali/">Kali</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>很多时候网络上下载的、系统或软件自带的字典效果不尽如人意，这个时候我们可能就需要根据自己的需求生成一个按照我们已经知道的信息来组合的字典。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Crunch是一种创建密码字典工具，该字典常用来暴力破解。使用crunch工具生成的密码可以发送到终端、文件或者另一个程序。crunch默认安装在kali环境中，Crunch可以按照指定的规则生成密码字典，生成的字典字符序列可以输出到屏幕、文件或重定向到另一个程序中，Crunch可以参数可能的组合和排列，其最新版本为3.6。并具备如下特征：</p>
+<blockquote>
+<p>Crunch可以以组合和排列的方式生成字典<br>它可以通过行数或文件大小中止输出<br>支持恢复<br>支持数字和符号模式<br>分别支持大小写字符模式<br>在生成多个文件时添加状态报告<br>新的-l选项支持@，%^<br>新的-d选项可以限制重复的字符，可以通过man文件查看详细信息<br>现在支持unicode<br>Crunch其实最厉害的是知道密码的一部分细节后，可以针对性的生成字典，这在渗透中就特别有用。</p>
+</blockquote>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>现在的KALI中一般自带crunch。在终端下输入crunch，执行以上命令后，将输出如下所示的信息：</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://sevge.github.io/about">
+            <img src="/img/avatar.jpg" alt="Sevge">
+            Sevge
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/04/07/crunch/&title=《密码生成工具"Crunch"的使用》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/04/07/crunch/&title=《密码生成工具"Crunch"的使用》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/04/07/crunch/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《密码生成工具"Crunch"的使用》 — Sevge's Blog&url=https://sevge.github.io/about/2018/04/07/crunch/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/04/07/crunch/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/12/vmware-3-mode/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">VMware的三种网络模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Sevge &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/04/07/crunch/&title=《密码生成工具"Crunch"的使用》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/04/07/crunch/&title=《密码生成工具"Crunch"的使用》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/04/07/crunch/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《密码生成工具"Crunch"的使用》 — Sevge's Blog&url=https://sevge.github.io/about/2018/04/07/crunch/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/04/07/crunch/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay07DQAwF0P7/TxeJFQiaXNspIjNnVqiUxqcLM348HvF5fp6fr3x9/dV75n912cHAwLgt43l4jh//6pUk3OMY8tgwMDD2YRwn2Ty45K/y5J7EhoGBgTF5T55k84sjBgYGxiTE44Dy9IqBgYExKWInPa68Dff2WhwDA+OGjElh+e6f3zjfwMDAuAnjWTzVMWdSuF4QFQYGxtKMatP/qoFB7ys4+SIwMDAWZUwGkHkj7PgKmPz2ZL0MAwNjaca8HZan3fy6mS+oYWBg7MCohlVt1lcvl3kR++1zMDAwlmZMVriqvfp5Gy4qdzEwMJZjVBtn1RTce1ZzvoGBgbENIw+312LrjRNO1jIwMDC2ZFSbX1ddCnNGlHAxMDCWYCQjxuo4s7dUUY3hl0/DwMBYmjEBVFe7emPO/JKKgYGxJyMPopkiB2kXAwNjB8ZxiXhVKy1J2fkAFQMDYzdG3u7vrXz1roP5yCHa18DAwFiCUV10yC92eVk72e/CwMBYm1FNdlHDq1j09v4BYGBg7Mm4toitwqqh/1EtjoGB8Q8YvSbaIzjVm2n1k8s3TQwMjNsynsWTdLfmxW1evr684WJgYCzEyE++BjHp2PdGpBgYGDsw8o/uLXjlRWyScE/KVwwMjKUZ15a11evdBbU4BgYGRnHM2Uupo3gwMDAwgkf2Bp+95TMMDIw9GXkRm7TAml29yXIGBgbG0ozeYKCXjpMHVxt/GBgYSzM+ALk1Rry7myWmAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
