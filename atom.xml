@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sevge.github.io/about/"/>
-  <updated>2018-04-11T12:27:38.527Z</updated>
+  <updated>2018-04-12T00:37:37.264Z</updated>
   <id>https://sevge.github.io/about/</id>
   
   <author>
@@ -17,15 +17,56 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>mingqixing</title>
-    <link href="https://sevge.github.io/about/2018/04/11/mingqixing/"/>
-    <id>https://sevge.github.io/about/2018/04/11/mingqixing/</id>
-    <published>2018-04-11T12:27:38.000Z</published>
-    <updated>2018-04-11T12:27:38.527Z</updated>
+    <title>使用Fluxion钓鱼</title>
+    <link href="https://sevge.github.io/about/2018/04/12/fluxion/"/>
+    <id>https://sevge.github.io/about/2018/04/12/fluxion/</id>
+    <published>2018-04-12T00:35:41.000Z</published>
+    <updated>2018-04-12T00:37:37.264Z</updated>
     
     <summary type="html">
     
     </summary>
+    
+      <category term="kali" scheme="https://sevge.github.io/about/categories/kali/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>生活艰难，也要快乐</title>
+    <link href="https://sevge.github.io/about/2018/04/12/shenghuojiannan/"/>
+    <id>https://sevge.github.io/about/2018/04/12/shenghuojiannan/</id>
+    <published>2018-04-12T00:22:50.000Z</published>
+    <updated>2018-04-12T00:40:43.118Z</updated>
+    
+    <content type="html"><![CDATA[<div id="music163player"><br><center><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="420" height="86" src="//music.163.com/outchain/player?type=2&id=34218355&auto=1&height=66"></iframe><br></center><br></div><p>很久以前看过的电影，最近重温了三部曲，颇有感慨。剧情偏向平淡的日常，但总给人一种温暖的感觉。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;div id=&quot;music163player&quot;&gt;&lt;br&gt;&lt;center&gt;&lt;br&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;420&quot; height=&quot;86&quot; src=&quot;/
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://sevge.github.io/about/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>名企行记</title>
+    <link href="https://sevge.github.io/about/2018/04/11/mingqixing/"/>
+    <id>https://sevge.github.io/about/2018/04/11/mingqixing/</id>
+    <published>2018-04-11T12:27:38.000Z</published>
+    <updated>2018-04-12T00:38:12.008Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://sevge.github.io/about/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
   </entry>
