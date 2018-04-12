@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sevge.github.io/about/"/>
-  <updated>2018-04-12T02:48:51.548Z</updated>
+  <updated>2018-04-12T03:36:57.136Z</updated>
   <id>https://sevge.github.io/about/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Common WiFi attacks and how to detect them</title>
+    <link href="https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/"/>
+    <id>https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/</id>
+    <published>2018-04-12T03:36:57.000Z</published>
+    <updated>2018-04-12T03:36:57.136Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Install graylog</title>
+    <link href="https://sevge.github.io/about/2018/04/12/Install-graylog/"/>
+    <id>https://sevge.github.io/about/2018/04/12/Install-graylog/</id>
+    <published>2018-04-12T03:36:40.000Z</published>
+    <updated>2018-04-12T03:36:40.286Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>xerosploit</title>
