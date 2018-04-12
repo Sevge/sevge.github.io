@@ -20,12 +20,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这一步的目的是为了验证WiFi密码是否正确)">
+    <meta name="description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。(类似的工具还有WIFI-Phisher。)以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Fluxion钓鱼">
 <meta property="og:url" content="https://sevge.github.io/about/2017/12/18/fluxion/index.html">
 <meta property="og:site_name" content="Sevge&#39;s Blog">
-<meta property="og:description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这一步的目的是为了验证WiFi密码是否正确)">
+<meta property="og:description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。(类似的工具还有WIFI-Phisher。)以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QiswNUd3eXh0TzBjSGJrWWJ6Y0ZEWXNaVzd6dk5YSllRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SlNhSVJSZkIwRnFVSkNoM1VXZEkxQW9tbERCSks0QUZRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
@@ -40,14 +40,14 @@
 <meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SnBUaFlqQjBVMVF5cGdHbXRNc3N3WWdueDJubEY5dkNRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SlNhSVJSZkIwRnFNYm55NWJkODUxblNvRzRPN2o2M2xRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4RHoveC8rK29zQlVUNEVyQmJGS1g2T01MWEhBdDY4bmRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4UFo2Q2VWOTc4ZXRpTjNmL2N5NFhYN2JGL3pMZVJlVEtRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SldISHIwT3JpYkk0NFU1TGlkY1MwWE51ck85bzN6NkZ3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4UFo2Q2VWOTc4ZXRpTjNmL2N5NFhYN2JGL3pMZVJlVEtRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4Q2k0TG1ENXZod2hDQUZGcVBIUFBhR0pqTkNxU05aRE5nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4TVV3MVZBZVplUFFZRTFMREpCNG9TY1hnWUpvRTdobld3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-12T03:26:19.229Z">
+<meta property="og:updated_time" content="2018-04-12T03:32:06.256Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Fluxion钓鱼">
-<meta name="twitter:description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这一步的目的是为了验证WiFi密码是否正确)">
+<meta name="twitter:description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。(类似的工具还有WIFI-Phisher。)以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这">
 <meta name="twitter:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QiswNUd3eXh0TzBjSGJrWWJ6Y0ZEWXNaVzd6dk5YSllRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
     
         <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
@@ -198,7 +198,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。<br>以下操作使用的是我寝室的TP-LINK作为实验。</p>
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。(类似的工具还有WIFI-Phisher。)<br>以下操作使用的是我寝室的TP-LINK作为实验。</p>
 <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ol>
 <li>扫描能够接收到的WIFI信号  　　</li>
 <li>抓取握手包(这一步的目的是为了验证WiFi密码是否正确)  　　</li>
@@ -298,7 +298,7 @@
             </figure><br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4UFo2Q2VWOTc4ZXRpTjNmL2N5NFhYN2JGL3pMZVJlVEtRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="phone3" title="">
+                    <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SldISHIwT3JpYkk0NFU1TGlkY1MwWE51ck85bzN6NkZ3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="phone3" title="">
                 </div>
                 <div class="image-caption">phone3</div>
             </figure><br><figure class="image-bubble">
@@ -321,7 +321,7 @@
                 </div>
                 <div class="image-caption">exit</div>
             </figure></p>
-<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>Fluxion这个工具不同于Airecrack和Reaver，它是通过社工的方法得到密码。总的来说这是个相当方便的一键脚本，完全傻瓜式的操作，针对没有相关常识的用户是非常快捷地攻击方式。<br>类似的工具还有WIFI-Phisher。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>Fluxion这个工具不同于Airecrack和Reaver，它是通过社工的方法得到密码。总的来说这是个相当方便的一键脚本，完全傻瓜式的操作，针对没有相关常识的用户是非常快捷且有效的攻击方式。</p>
 
         </div>
 
