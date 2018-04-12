@@ -20,12 +20,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。现在我要讲的就是破解这道身份验证，连接上内网。当然这不仅仅是可以上网了，做其他事情也更加方便。以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11协">
+    <meta name="description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无线密码攻击">
 <meta property="og:url" content="https://sevge.github.io/about/2017/12/11/wirelessattack/index.html">
 <meta property="og:site_name" content="Sevge&#39;s Blog">
-<meta property="og:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。现在我要讲的就是破解这道身份验证，连接上内网。当然这不仅仅是可以上网了，做其他事情也更加方便。以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11协">
+<meta property="og:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0WUw3U0kySXpXcnB3Y1NNM1dxM3puRUhrbzRQdk1RVk5nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0YlQxRWNna3RMZ29UbmhxRzNwUnlPZDc1dUkrWXdySWdBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
@@ -52,10 +52,10 @@
 <meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0WXkyNVZ5TXRkRzZ2WElVVFc5WE9EWkxpM2dCZ25SUWRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0ZjlLblBVWkw1UVZLdjY2WWRxOFFWd3hLVVNxektXcjFRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0Y3FoMVQ1N00rZEZkWlBpL1FwMDBDTVVMd0hrSFlLVEVnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-11T14:04:11.180Z">
+<meta property="og:updated_time" content="2018-04-12T00:51:50.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无线密码攻击">
-<meta name="twitter:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。现在我要讲的就是破解这道身份验证，连接上内网。当然这不仅仅是可以上网了，做其他事情也更加方便。以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11协">
+<meta name="twitter:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11">
 <meta name="twitter:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0WUw3U0kySXpXcnB3Y1NNM1dxM3puRUhrbzRQdk1RVk5nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
     
         <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
@@ -206,7 +206,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。<br>现在我要讲的就是破解这道身份验证，连接上内网。当然这不仅仅是可以上网了，做其他事情也更加方便。<br>以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11协议的WEP以及WPA-PSK加密的工具。)</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。<br>现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。<br>以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11协议的WEP以及WPA-PSK加密的工具。)</p>
 <h2 id="WEP加密的无线网络"><a href="#WEP加密的无线网络" class="headerlink" title="WEP加密的无线网络"></a>WEP加密的无线网络</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Wired equivalent privacy（WEP）协议是对在两台设备间无线传输的数据进行加密的方式，用来防止非法用户窃听或者侵入无线网络。不过密码分析学家已经找出WEP的好几个弱点，因此2003年被WI-FI protected access（WPA）淘汰，又在2004年由完整的IEEE 802.11i标准（WPA2）所取代。不过，现在很多路由器基本都自带这种加密方式，仍然有相当多小白可能选择了这种加密方式。<br>WEP的破解为利用加密体制缺陷，通过收集足够的数据包，使用分析加密算法还原出密码。 </p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>下面我以自家用路由器进行示例。<br><figure class="image-bubble">
                 <div class="img-lightbox">
@@ -358,7 +358,7 @@
                 </div>
                 <div class="image-caption">dic_passwd</div>
             </figure>
-<p>这里我使用的是8位纯数字字典，其大小约858M。<br>Airacrack跑字典的速度取决于你的<br>电脑的配置，找出密码的速度则取决于字典的质量还有运气了。</p>
+<p>这里我使用的是8位纯数字字典，其大小约858M。<br>Airacrack跑字典的速度取决于你的电脑的配置，找出密码的速度则取决于字典的质量还有运气了。</p>
 <h2 id="WPS-Wi-Fi-Protect-Setup"><a href="#WPS-Wi-Fi-Protect-Setup" class="headerlink" title="WPS(Wi-Fi Protect Setup)"></a>WPS(Wi-Fi Protect Setup)</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><p>WPS是由WIFI联盟推出的全新WIFI安全防护设定标准。该标准主要是为了解决无线网络加密认证过于繁杂的弊病。因为很多用户觉得设置步骤太麻烦，不做任何安全设定。所以很多人使用wps设置无线设备，可以通过个人识别码(PIN)或按钮（PBC）取代输入一个很长的密码。路由器开启wps功能后，会随机生成一个8位的pin码，通过暴力枚举pin码，达到破解的目的。<br>pin码是由8位纯数字组成的识别码，pin码破解是分三部分进行的，规律是这样的：pin码分为三部分，如图：<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -446,7 +446,7 @@
             </figure>
 </li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上，是我平时取得WIFI密码的常用方法。<br>基本思路是：<br>先看万能钥匙能否解开，这个方式最简便<br>然后再看加密方式，WEP加密参考0x02，<br>若是WPA加密再看AP是否开启WPS,参考0x04，<br>否则只能跑字典，参考0x03。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上，是我平时取得WIFI密码的常用方法。<br>基本思路是：<br>先看万能钥匙能否解开，这个方式最简便<br>然后再看加密方式，WEP加密参考0x02，<br>若是WPA加密先看AP是否开启WPS,参考0x04，<br>否则只能跑字典，参考0x03。</p>
 
         </div>
 
@@ -521,9 +521,9 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/04/11/mingqixing/" id="post-prev" class="post-nav-link">
+      <a href="/2017/12/18/fluxion/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">名企行记</h4>
+        <h4 class="title">使用Fluxion钓鱼</h4>
       </a>
     </div>
   

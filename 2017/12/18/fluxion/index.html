@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>使用Fluxion钓鱼 | Sevge&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这一步的目的是为了验证WiFi密码是否正确)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Fluxion钓鱼">
+<meta property="og:url" content="https://sevge.github.io/about/2017/12/18/fluxion/index.html">
+<meta property="og:site_name" content="Sevge&#39;s Blog">
+<meta property="og:description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这一步的目的是为了验证WiFi密码是否正确)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QiswNUd3eXh0TzBjSGJrWWJ6Y0ZEWXNaVzd6dk5YSllRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SlNhSVJSZkIwRnFVSkNoM1VXZEkxQW9tbERCSks0QUZRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QVFnL2Zzclp3dmVWcUxjQmxTcVJabzJxQ1ZvalNRQ1VRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4Q3QzdDBJajdnN3diTlJTaVdXYitxallLMTYrRG11UW9RPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SWxQd0Y2VGRZYjlwSkxwQ0Q3bjZzZG9ISU8wUTFJWWNnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4RG0rWGp4MXhhUVArRkhxTmNUMUJaaVN1bXRhUyt4MHlBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4TjRMWFhrRWlpcEs4VTVHbDFiUXhOeU9qdWl1bmVmNGtnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SzUvOVNYNkpBdStvRlhQYnpGVHBONmZzcTI5enBBQVlnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4TCthTkVRRXBDMzgwSUtzMzZiVGxqb0JycWdoby8vR3NRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QWJxUnpTZjNIN3BsNy91b3NISnAzdERDa2lPekJMdmdRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SnBUaFlqQjBVMVF5cGdHbXRNc3N3WWdueDJubEY5dkNRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SlNhSVJSZkIwRnFNYm55NWJkODUxblNvRzRPN2o2M2xRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4RHoveC8rK29zQlVUNEVyQmJGS1g2T01MWEhBdDY4bmRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4UFo2Q2VWOTc4ZXRpTjNmL2N5NFhYN2JGL3pMZVJlVEtRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4UFo2Q2VWOTc4ZXRpTjNmL2N5NFhYN2JGL3pMZVJlVEtRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4Q2k0TG1ENXZod2hDQUZGcVBIUFBhR0pqTkNxU05aRE5nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4TVV3MVZBZVplUFFZRTFMREpCNG9TY1hnWUpvRTdobld3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:updated_time" content="2018-04-12T03:26:19.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Fluxion钓鱼">
+<meta name="twitter:description" content="简介之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。以下操作使用的是我寝室的TP-LINK作为实验。 功能 扫描能够接收到的WIFI信号  　　 抓取握手包(这一步的目的是为了验证WiFi密码是否正确)">
+<meta name="twitter:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QiswNUd3eXh0TzBjSGJrWWJ6Y0ZEWXNaVzd6dk5YSllRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+    
+        <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Sevge</h5>
+          <a href="mailto:sevge6582@gmail.com" title="sevge6582@gmail.com" class="mail">sevge6582@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/sevge" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Fluxion钓鱼</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Fluxion钓鱼</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-18T00:35:41.000Z" itemprop="datePublished" class="page-time">
+  2017-12-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/kali/">kali</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#功能"><span class="post-toc-number">2.</span> <span class="post-toc-text">功能</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原理"><span class="post-toc-number">3.</span> <span class="post-toc-text">原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#操作步骤"><span class="post-toc-number">4.</span> <span class="post-toc-text">操作步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#克隆"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">克隆</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开始"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">开始</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选项"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">选项</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#现象"><span class="post-toc-number">5.</span> <span class="post-toc-text">现象</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感想"><span class="post-toc-number">6.</span> <span class="post-toc-text">感想</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-fluxion"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Fluxion钓鱼</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-18 08:35:41" datetime="2017-12-18T00:35:41.000Z"  itemprop="datePublished">2017-12-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/kali/">kali</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>之前介绍了无线密码攻击的几种方式，使用Aircrack-ng的弊端是暴力破解最终可能得不到正确的秘钥。另外一种新姿势，就是针对用户进行的攻击，没有哪一个系统能扛得住社会工程学技术的入侵，Fluxion就是利用了钓鱼的方法来伪造登录界面进行入侵。<br>以下操作使用的是我寝室的TP-LINK作为实验。</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ol>
+<li>扫描能够接收到的WIFI信号  　　</li>
+<li>抓取握手包(这一步的目的是为了验证WiFi密码是否正确)  　　</li>
+<li>使用WEB接口  　　</li>
+<li>启动一个假的AP实例来模拟原本的接入点  　　</li>
+<li>然后会生成一个MDK3进程。如果普通用户已经连接到这个WiFi，也会输入WiFi密码  　　</li>
+<li>随后启动一个模拟的DNS服务器并且抓取所有的DNS请求，并且会把这些请求重新定向到一个含有恶意脚本的HOST地址  　　</li>
+<li>随后会弹出一个窗口提示用户输入正确的WiFi密码  　　</li>
+<li>用户输入的密码将和第二步抓到的握手包做比较来核实密码是否正确  　　</li>
+<li>这个程序是自动化运行的，并且能够很快的抓取到WiFi密码</li>
+</ol>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>我根据自己的理解，画了下图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QiswNUd3eXh0TzBjSGJrWWJ6Y0ZEWXNaVzd6dk5YSllRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="process" title="">
+                </div>
+                <div class="image-caption">process</div>
+            </figure></p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git clone --recursive https://github.com/FluxionNetwork/fluxion.git</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SlNhSVJSZkIwRnFVSkNoM1VXZEkxQW9tbERCSks0QUZRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="git_clone" title="">
+                </div>
+                <div class="image-caption">git_clone</div>
+            </figure>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>启动脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd fluxion</span><br><span class="line"># ./fluxion</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QVFnL2Zzclp3dmVWcUxjQmxTcVJabzJxQ1ZvalNRQ1VRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="init" title="">
+                </div>
+                <div class="image-caption">init</div>
+            </figure>
+<p>这时fluxion会检查它必须的组件，如果没有的话它会自动安装。</p>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><p>等待检查和安装后，会出现选项界面，以下根据个人情况选择。<br>依次选择语言，选择网卡wlan0，选择监控所有信道<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4Q3QzdDBJajdnN3diTlJTaVdXYitxallLMTYrRG11UW9RPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="option1" title="">
+                </div>
+                <div class="image-caption">option1</div>
+            </figure><br>之后它会将附近所有信道的AP列出<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SWxQd0Y2VGRZYjlwSkxwQ0Q3bjZzZG9ISU8wUTFJWWNnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="option2" title="">
+                </div>
+                <div class="image-caption">option2</div>
+            </figure><br>等待一段时间，按下ctr+c停止扫描，选择需要的AP，我选择69。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4RG0rWGp4MXhhUVArRkhxTmNUMUJaaVN1bXRhUyt4MHlBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="option3" title="">
+                </div>
+                <div class="image-caption">option3</div>
+            </figure><br>这里选择1，<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4TjRMWFhrRWlpcEs4VTVHbDFiUXhOeU9qdWl1bmVmNGtnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="option4" title="">
+                </div>
+                <div class="image-caption">option4</div>
+            </figure><br>之后选择我的wlan0网卡，选择推荐的1选项，<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SzUvOVNYNkpBdStvRlhQYnpGVHBONmZzcTI5enBBQVlnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="option5" title="">
+                </div>
+                <div class="image-caption">option5</div>
+            </figure><br>开启新的一个终端，使用airodump抓一个握手包。<br>我抓到握手包在/root/tool/w-01.cap。<br>之后然后选择创建ssl证书<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4TCthTkVRRXBDMzgwSUtzMzZiVGxqb0JycWdoby8vR3NRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="option6" title="">
+                </div>
+                <div class="image-caption">option6</div>
+            </figure><br>选择钓鱼的认证网页界面：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4QWJxUnpTZjNIN3BsNy91b3NISnAzdERDa2lPekJMdmdRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="option7" title="">
+                </div>
+                <div class="image-caption">option7</div>
+            </figure><br>然后fluxion自动启动一系列服务：开启同名热点，开启钓鱼页面，阻截客户端与AP的连接：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SnBUaFlqQjBVMVF5cGdHbXRNc3N3WWdueDJubEY5dkNRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="service_start" title="">
+                </div>
+                <div class="image-caption">service_start</div>
+            </figure></p>
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>此时我打开手机，发现手机与热点已经断开连接并提示验证错误。此时可以看到出现了名字一模一样的热点名称。连接上钓鱼热点后，尝试任何联网行为它都将定向到192.168.254.1，我先尝试输入一次错误的密码，它会提示错误(与之前抓到的握手包进行对比校验)；当我输入正确的后，他将悄悄记录密码，然后退出Fluxion相关的所有任务，仿佛什么也没有发生过。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4SlNhSVJSZkIwRnFNYm55NWJkODUxblNvRzRPN2o2M2xRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="phone1" title="">
+                </div>
+                <div class="image-caption">phone1</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4RHoveC8rK29zQlVUNEVyQmJGS1g2T01MWEhBdDY4bmRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="phone2" title="">
+                </div>
+                <div class="image-caption">phone2</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4UFo2Q2VWOTc4ZXRpTjNmL2N5NFhYN2JGL3pMZVJlVEtRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="phone3" title="">
+                </div>
+                <div class="image-caption">phone3</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4UFo2Q2VWOTc4ZXRpTjNmL2N5NFhYN2JGL3pMZVJlVEtRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="phone4" title="">
+                </div>
+                <div class="image-caption">phone4</div>
+            </figure></p>
+<p>回到fluxion，可以看到这边已经得到密码。<br>其实通过这种方法已经无关乎密码的复杂程度了，我这里虽然使用的是最简单的密码，但密码更复杂些，若用户没有一点防范之心它一样会乖乖到我这边来。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4Q2k0TG1ENXZod2hDQUZGcVBIUFBhR0pqTkNxU05aRE5nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="key_found" title="">
+                </div>
+                <div class="image-caption">key_found</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGFBUXdEOVVoejh4TVV3MVZBZVplUFFZRTFMREpCNG9TY1hnWUpvRTdobld3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="exit" title="">
+                </div>
+                <div class="image-caption">exit</div>
+            </figure></p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>Fluxion这个工具不同于Airecrack和Reaver，它是通过社工的方法得到密码。总的来说这是个相当方便的一键脚本，完全傻瓜式的操作，针对没有相关常识的用户是非常快捷地攻击方式。<br>类似的工具还有WIFI-Phisher。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://sevge.github.io/about">
+            <img src="/img/avatar.jpg" alt="Sevge">
+            Sevge
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2017/12/18/fluxion/&title=《使用Fluxion钓鱼》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2017/12/18/fluxion/&title=《使用Fluxion钓鱼》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2017/12/18/fluxion/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Fluxion钓鱼》 — Sevge's Blog&url=https://sevge.github.io/about/2017/12/18/fluxion/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2017/12/18/fluxion/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/11/mingqixing/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">名企行记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/11/wirelessattack/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">无线密码攻击</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Sevge &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2017/12/18/fluxion/&title=《使用Fluxion钓鱼》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2017/12/18/fluxion/&title=《使用Fluxion钓鱼》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2017/12/18/fluxion/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Fluxion钓鱼》 — Sevge's Blog&url=https://sevge.github.io/about/2017/12/18/fluxion/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2017/12/18/fluxion/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3ay44jIQwF0P7/n05vR+qk6tomIxUcVlEewKmFg41/fuLx+mck3/k78jmvVxkNDAyMxzKS5a/f/7St6jv5p2+oGBgYBzA+RbDr10k4zj+9fkw3e8bAwMC4DJp5eM3DLgYGBsaE0Us1JwdHDAwMjDyJnRz4JgF3cS6OgYHxQEYeLv//66/cb2BgYDyK8SqOa1g16e3t4c2uMDAwtmbkAS6fbhW73PyBgYGxKSNJCCcXk/lDGTWKYWBgbM24/moPMNl6XvIrNIdhYGBsxEgw+QLVqFje6PVaGBgY2zFWFeur15m9q8qo3IaBgbERI2+qyENwtUWj2QSWT4qBgbEFoxpec8Y3AG9+hYGBcQAjL/FPmjDyA18eSzEwMM5k9Gp11d8uXgUDA+MYxqRM1sslk6R3Qc8IBgbGFoxq5WpenpuwPx4NMTAwNmUkCWRS+u+1aMwPjhgYGOcwmm1YrYSz2nhRpmJgYGzKWHv1WJ1nEr6bGTkGBsZjGfMLxR4+x9ysi4GBcTAj32I10a0ePW+COwYGxgGMVcskaWp+GbAsicXAwHgs41Ucefl+7UO5mRMDA2NrRj4mpbHk+NhrzijDMDAwHsuoHuxyTLUMNwroGBgYBzCqgW/V5WX1H+AmF8fAwMAIAl/1erLX5FHOiTEwMA5j9K48J2W46OiJgYFxAKPXMLEqHZ0U7zAwME5g5KljUqT7xiby0I+BgbEd4xeIRZNhPSfG0gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
