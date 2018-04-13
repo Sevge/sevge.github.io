@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxR3BEUXEvVUU4U1cyNUtZWUtPZGUvZkVKWGtyK2NiM1JRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxRkM3L29xRzU4NjZsYzN3bVdmQWY1VFc5U1ROeXZzREZ3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxTS9oTCtFY2dMODAwYWd5SW9rLzMreTRULzlFWUtZRXpBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-07T10:47:15.421Z">
+<meta property="og:updated_time" content="2018-04-13T04:50:51.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="密码生成工具Crunch的使用">
 <meta name="twitter:description" content="很多时候网络上下载的、系统或软件自带的字典效果不尽如人意，这个时候我们可能就需要根据自己的需求生成一个按照我们已经知道的信息来组合的字典。 介绍Crunch是一种创建密码字典工具，该字典常用来暴力破解。使用Crunch工具生成的密码可以发送到终端、文件或者另一个程序。Crunch默认安装在kali环境中，Crunch可以按照指定的规则生成密码字典，生成的字典字符序列可以输出到屏幕、文件或重定向到另">
@@ -169,7 +169,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用选项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">常用选项</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实例"><span class="post-toc-number">3.</span> <span class="post-toc-text">实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成单词的所有组合"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">生成单词的所有组合</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#制作8位密码字典"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">制作8位密码字典</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#制作139开头的手机字典"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">制作139开头的手机字典</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搭配工具"><span class="post-toc-number">4.</span> <span class="post-toc-text">搭配工具</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用选项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">常用选项</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实例"><span class="post-toc-number">3.</span> <span class="post-toc-text">实例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成单词的所有组合"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">生成单词的所有组合</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#制作8位密码字典"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">制作8位密码字典</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#制作139开头的手机字典"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">制作139开头的手机字典</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搭配工具"><span class="post-toc-number">4.</span> <span class="post-toc-text">搭配工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
         </nav>
     </aside>
 
@@ -244,7 +244,9 @@
                     <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxQ2JvQlZCRGovUjR2LzUyMjhOMFhZT0QxY2ZuVTRnYjhnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="Crunch_option7" title="">
                 </div>
                 <div class="image-caption">Crunch_option7</div>
-            </figure><br>(8) -q filename.txt，读取filename.txt<br>(9) -s <strong>指定一个开始的字符</strong>。<br>(10) -t @,%^，指定模式，@,%^分别代表意义如下：</p>
+            </figure><br>(8) -q filename.txt，读取filename.txt</p>
+<p>(9) -s <strong>指定一个开始的字符</strong>。</p>
+<p>(10) -t @,%^，指定模式，@,%^分别代表意义如下：</p>
 <blockquote>
 <ol>
 <li>@ 插入小写字母</li>
@@ -283,7 +285,9 @@
                     <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxTS9oTCtFY2dMODAwYWd5SW9rLzMreTRULzlFWUtZRXpBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="IDpasswdX" title="">
                 </div>
                 <div class="image-caption">IDpasswdX</div>
-            </figure><br>然后可以使用Burpsuite…<br>Crunch只是一个生成字典的工具，理论上支持搭配所有暴力破解的工具，比如跑抓到的WIFI握手包，压缩包密码等，以后它将是我如影随形的伙伴了！<br><a href="https://github.com/Crunchsec/Crunch" target="_blank" rel="noopener">Crunch Me!</a></p>
+            </figure><br>然后可以使用Burpsuite…</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Crunch只是一个生成字典的工具，理论上支持搭配所有暴力破解的工具，比如跑抓到的WIFI握手包，跑压缩包密码等。不管怎么说，以后它将是我如影随形的伙伴了！</p>
+<p><a href="https://github.com/Crunchsec/Crunch" target="_blank" rel="noopener">Crunch Me!</a></p>
 
         </div>
 
