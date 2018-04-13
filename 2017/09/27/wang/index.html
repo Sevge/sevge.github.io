@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJXNW4zQXB0dTJQeFVUQnJ4MXNaeVovakoxa1dTR3Y5TWR4dkJjRTRPYTJBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJXNW4zQXB0dTJQNHNHSWIrMGhBblNCWUVpcEtMMFNYVnJIL1VCR2EvZnNBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJXNW4zQXB0dTJQMkpYNk01eGcyWUl0TXBPYWUzNVBXSmR6eUhwMzljSjNnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-13T04:48:38.001Z">
+<meta property="og:updated_time" content="2018-04-13T05:48:50.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="被玩坏的校园网">
 <meta name="twitter:description" content="校园网的升级随着时代的发展，学校也紧跟潮流在今年升(zhang)级(jia)了校园网。之前校园网是纯有线锐捷客户端认证，现在校园网将电信联通合并，加上无线网络覆盖全校，实在是皆大欢喜，可喜可贺，可喜可贺啊！ 有线认证方式使用了多年的有线网络，通过锐捷客户端认证，原来￥80一学期还不限速的网络一去不复返咯。">
@@ -236,7 +236,7 @@
                 </div>
                 <div class="image-caption">Vpn_inschool</div>
             </figure></p>
-<h3 id="服务搭建-1"><a href="#服务搭建-1" class="headerlink" title="服务搭建"></a>服务搭建</h3><p>恰好我在实验室有这样的资源，一台IP地址为”10.x.x.x”的服务器(其实买个树莓派插在实验室也一样)。<br>按照上述<a href="https://blog.csdn.net/qq_35422558/article/details/78018089" target="_blank" rel="noopener">服务搭建</a>的步骤在这台服务器上安装Softether，然后在我的电脑上使用Openvpn的配置文件直接连接,搞定！</p>
+<h3 id="服务搭建-1"><a href="#服务搭建-1" class="headerlink" title="服务搭建"></a>服务搭建</h3><p>恰好我在实验室有这样的资源，一台IP地址为”10.x.x.x”的服务器(其实买个树莓派插在实验室也一样)。按照上述<a href="https://blog.csdn.net/qq_35422558/article/details/78018089" target="_blank" rel="noopener">服务搭建</a>的步骤在这台服务器上安装Softether，然后在我的电脑上使用Openvpn的配置文件直接连接,搞定！</p>
 <h3 id="使用心得-1"><a href="#使用心得-1" class="headerlink" title="使用心得"></a>使用心得</h3><p>以上，在登陆认证获得内网访问权限后，通过Openvpn连接到我的内网服务器，没有受到任何限速！</p>
 <h2 id="瞎折腾"><a href="#瞎折腾" class="headerlink" title="瞎折腾"></a>瞎折腾</h2><h3 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h3><p>这种方式完全是我瞎折腾出来的，原理猜测是无线认证和有线认证是分开的两台服务器，但两者是有同步消息的。在我的电脑，两个客户端(无线认证和有线认证)同时认证卡住两台服务器同步消息的时间，使两台服务器消息矛盾，绕开了他们的限制。</p>
 <h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
@@ -273,7 +273,8 @@
             </figure>
 </li>
 </ol>
-<h3 id="使用心得-2"><a href="#使用心得-2" class="headerlink" title="使用心得"></a>使用心得</h3><p>网速测试是20M带宽，这种方式好像同时绕过了限速，看到室友2M、4M蛋疼的小水管，躲在角落偷偷笑。<br>使用发现，通过这种方式连接的网络十来分钟后会断掉，之后不能解析地址，不能ping通8.8.8.8，QQ不能发送和接收消息，但是奇怪的是正在观看的直播不会断。</p>
+<h3 id="使用心得-2"><a href="#使用心得-2" class="headerlink" title="使用心得"></a>使用心得</h3><p>网速测试是20M带宽，这种方式好像同时绕过了限速，看到室友2M、4M蛋疼的小水管，躲在角落偷偷笑。</p>
+<p>使用发现，通过这种方式连接的网络十来分钟后会断掉，之后不能解析地址，不能ping通8.8.8.8，QQ不能发送和接收消息，但是奇怪的是正在观看的直播不会断。</p>
 <p>有待进一步探究…</p>
 
         </div>

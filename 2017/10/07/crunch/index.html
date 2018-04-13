@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxR3BEUXEvVUU4U1cyNUtZWUtPZGUvZkVKWGtyK2NiM1JRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxRkM3L29xRzU4NjZsYzN3bVdmQWY1VFc5U1ROeXZzREZ3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxTS9oTCtFY2dMODAwYWd5SW9rLzMreTRULzlFWUtZRXpBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-13T04:50:51.055Z">
+<meta property="og:updated_time" content="2018-04-13T05:47:48.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="密码生成工具Crunch的使用">
 <meta name="twitter:description" content="很多时候网络上下载的、系统或软件自带的字典效果不尽如人意，这个时候我们可能就需要根据自己的需求生成一个按照我们已经知道的信息来组合的字典。 介绍Crunch是一种创建密码字典工具，该字典常用来暴力破解。使用Crunch工具生成的密码可以发送到终端、文件或者另一个程序。Crunch默认安装在kali环境中，Crunch可以按照指定的规则生成密码字典，生成的字典字符序列可以输出到屏幕、文件或重定向到另">
@@ -232,13 +232,16 @@
                     <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxUHJQa3ljNTQ0a3hIbkdVdXBvTFZJWERQMHh0aWVFSXRnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="Crunch_option22" title="">
                 </div>
                 <div class="image-caption">Crunch_option22</div>
-            </figure><br>(3) -d 数字符号，<strong>限制出现相同元素的个数</strong>(至少出现元素个数)，“-d 2@”限制小写字母输出像aab和aac，aaa不会产生，因为这是连续3个字母，格式是数字+符号，数字是连续字母出现的次数，符号是限制字符串的字符，例如@,%^(“@”代表小写字母，“,”代表大写字符，“%”代表数字，“^”代表特殊字符)<br>(4) -e 字符串，<strong>定义停止生成密码</strong>，比如-e 222222：到222222停止生成密码:<br><figure class="image-bubble">
+            </figure><br>(3) -d 数字符号，<strong>限制出现相同元素的个数</strong>(至少出现元素个数)，“-d 2@”限制小写字母输出像aab和aac，aaa不会产生，因为这是连续3个字母，格式是数字+符号，数字是连续字母出现的次数，符号是限制字符串的字符，例如@,%^(“@”代表小写字母，“,”代表大写字符，“%”代表数字，“^”代表特殊字符)</p>
+<p>(4) -e 字符串，<strong>定义停止生成密码</strong>，比如-e 222222：到222222停止生成密码:<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxRVVqVWRSaDA4cnQ0bURwSlBuSk9EeExkcnJJZkRCTnlBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="Crunch_option4" title="">
                 </div>
                 <div class="image-caption">Crunch_option4</div>
-            </figure><br>(5) -f /path/to/charset.lst charset-name，从charset.lst指定字符集，也即<strong>调用密码库文件</strong>，比如kali中的charset.lst 在/usr/share/Crunch/charset.lst，则参数为“-f /usr/share/Crunch/charset.lst”<br>(6) -o wordlist.txt，<strong>指定输出文件的名称</strong>，例如wordlist.txt<br>(7) -p 字符串 或者-p 单词1 单词2 …<strong>以排列组合的方式来生成字典</strong>。<br><figure class="image-bubble">
+            </figure><br>(5) -f /path/to/charset.lst charset-name，从charset.lst指定字符集，也即<strong>调用密码库文件</strong>，比如kali中的charset.lst 在/usr/share/Crunch/charset.lst，则参数为“-f /usr/share/Crunch/charset.lst”</p>
+<p>(6) -o wordlist.txt，<strong>指定输出文件的名称</strong>，例如wordlist.txt</p>
+<p>(7) -p 字符串 或者-p 单词1 单词2 …<strong>以排列组合的方式来生成字典</strong>。<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUFlidld6eGYrakwxQ2JvQlZCRGovUjR2LzUyMjhOMFhZT0QxY2ZuVTRnYjhnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="Crunch_option7" title="">
