@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>RASPBIAN下从0部署GRAYLOG及其环境 | Sevge&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="前言虽然在树莓派上安装的同样是Linux系统，但是官方文档基本都是基于AMD64的操作，在部署过程中遇到了一些麻烦无从解决。期间折腾了很多，还尝试通过docker安装，甚至还为此专门看了一遍docker文档。。。 不多废话，从0开始记录一下这中间正确的过程。 准备工作使用”SD FORMATTER”格式化sd卡；”WIN32 DISK IMAGEER”烧录官方系统RASPBIAN；完成后，在SD卡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RASPBIAN下从0部署GRAYLOG及其环境">
+<meta property="og:url" content="https://sevge.github.io/about/2018/03/20/Install-graylog/index.html">
+<meta property="og:site_name" content="Sevge&#39;s Blog">
+<meta property="og:description" content="前言虽然在树莓派上安装的同样是Linux系统，但是官方文档基本都是基于AMD64的操作，在部署过程中遇到了一些麻烦无从解决。期间折腾了很多，还尝试通过docker安装，甚至还为此专门看了一遍docker文档。。。 不多废话，从0开始记录一下这中间正确的过程。 准备工作使用”SD FORMATTER”格式化sd卡；”WIN32 DISK IMAGEER”烧录官方系统RASPBIAN；完成后，在SD卡">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6UkFWTzhYRkxRRVEvYzJFbnZZaXFsTXVaU1A4VmdtT3BBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6WDZsSDF3cFgwOExXcmhJY2I0eWg4eUpxWFhUUjg0OHdBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6UlY2VzZubnJ6YXVTTnhkZDlUUUJHSzUrQ2diNzY1WkVBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6VUgxWmtSNENWekVpZytCUFJzTEI5TVAvM25Dc212TVlRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6ZEhCVmp2amJJSmxhUmpaUVpxUWVUUHJqdW51Z2k0TDFRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6U01OU3NrYXp5RHhvbm1tVVVSYUNtYkFYT2VveENXYnd3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6ZUpOZXdXVi8rUUZQTnRkWktIM012SkRCTUNPaTRqdXRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFPeFZ3QW9IMkYwRHVwQUpkM1JGeFVKNmVjVnZOWGFLTnlSeDUxazZEM21nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+<meta property="og:updated_time" content="2018-04-13T14:43:58.576Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RASPBIAN下从0部署GRAYLOG及其环境">
+<meta name="twitter:description" content="前言虽然在树莓派上安装的同样是Linux系统，但是官方文档基本都是基于AMD64的操作，在部署过程中遇到了一些麻烦无从解决。期间折腾了很多，还尝试通过docker安装，甚至还为此专门看了一遍docker文档。。。 不多废话，从0开始记录一下这中间正确的过程。 准备工作使用”SD FORMATTER”格式化sd卡；”WIN32 DISK IMAGEER”烧录官方系统RASPBIAN；完成后，在SD卡">
+<meta name="twitter:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6UkFWTzhYRkxRRVEvYzJFbnZZaXFsTXVaU1A4VmdtT3BBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
+    
+        <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Sevge</h5>
+          <a href="mailto:sevge6582@gmail.com" title="sevge6582@gmail.com" class="mail">sevge6582@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">RASPBIAN下从0部署GRAYLOG及其环境</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">RASPBIAN下从0部署GRAYLOG及其环境</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-20T03:36:40.000Z" itemprop="datePublished" class="page-time">
+  2018-03-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/树莓派/">树莓派</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装JAVA"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装JAVA</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装MONGODB"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">安装MONGODB</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装ELASTICSEARCH"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">安装ELASTICSEARCH</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装和配置GRAYLOG"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装和配置GRAYLOG</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完成"><span class="post-toc-number">4.</span> <span class="post-toc-text">完成</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Install-graylog"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">RASPBIAN下从0部署GRAYLOG及其环境</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-20 11:36:40" datetime="2018-03-20T03:36:40.000Z"  itemprop="datePublished">2018-03-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/树莓派/">树莓派</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>虽然在树莓派上安装的同样是Linux系统，但是官方文档基本都是基于AMD64的操作，在部署过程中遇到了一些麻烦无从解决。期间折腾了很多，还尝试通过docker安装，甚至还为此专门看了一遍docker文档。。。</p>
+<p>不多废话，从0开始记录一下这中间正确的过程。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>使用”SD FORMATTER”格式化sd卡；”WIN32 DISK IMAGEER”烧录官方系统RASPBIAN；完成后，在SD卡(boot)根目录下新建文本文件，重命名为ssh(无后缀)；拔出sd卡，放入树莓派中启动。我这边树莓派通过网线接入了无线路由器，电脑直接通过ssh连接：(pi,raspberry)<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6UkFWTzhYRkxRRVEvYzJFbnZZaXFsTXVaU1A4VmdtT3BBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="x-shell" title="">
+                </div>
+                <div class="image-caption">x-shell</div>
+            </figure><br>习惯性设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ sudo passwd root</span><br><span class="line">Enter new UNIX password: </span><br><span class="line">Retype new UNIX password: </span><br><span class="line">passwd: password updated successfully</span><br><span class="line">pi@raspberrypi:~ $ su root</span><br><span class="line">Password:</span><br><span class="line">root@raspberrypi:/home/pi# sed -i &apos;s|mirrordirector.raspbian.org|mirrors.ustc.edu.cn/raspbian|g&apos; /etc/apt/sources.list</span><br><span class="line">root@raspberrypi:/home/pi# sed -i &apos;s|archive.raspbian.org|mirrors.ustc.edu.cn/raspbian|g&apos; /etc/apt/sources.list</span><br><span class="line">root@raspberrypi:/home/pi# apt-get update</span><br><span class="line">root@raspberrypi:/home/pi# apt-get install vim</span><br></pre></td></tr></table></figure></p>
+<p>树莓派ram只有1g，要安装并使用graylog内存有点欠， <code>vim /etc/dphys-swapfile</code>, 默认为  <code>CON_SWAPSIZE= 100 M</code>的交换空间，  更改为<code>1024 M</code>。重新启动dphys-swapfile 文件服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi# vim /etc/dphys-swapfile </span><br><span class="line">root@raspberrypi:/home/pi# /etc/init.d/dphys-swapfile restart</span><br><span class="line">[ ok ] Restarting dphys-swapfile (via systemctl): dphys-swapfile.service.</span><br><span class="line">root@raspberrypi:/home/pi# free -m</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:            927          84         387          12         454         776</span><br><span class="line">Swap:          1023           0        1023</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6WDZsSDF3cFgwOExXcmhJY2I0eWg4eUpxWFhUUjg0OHdBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="swap" title="">
+                </div>
+                <div class="image-caption">swap</div>
+            </figure>
+<p>最后，在bashrc中添加一条别名记录<code>alias ls=’ls –color’</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi/software# vim ~/.bashrc </span><br><span class="line">root@raspberrypi:/home/pi/software# exit</span><br><span class="line">root@raspberrypi:/home/pi/software# su root</span><br></pre></td></tr></table></figure></p>
+<p>##　安装依赖<br>官方文档给出的依赖如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6UlY2VzZubnJ6YXVTTnhkZDlUUUJHSzUrQ2diNzY1WkVBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="requirements" title="">
+                </div>
+                <div class="image-caption">requirements</div>
+            </figure></p>
+<p>经过测试，树莓派仓库里的mongodb版本为2.4可以直接使用，jdk也可以通过仓库安装，但是elasticsearch版本达不到标准。</p>
+<h3 id="安装JAVA"><a href="#安装JAVA" class="headerlink" title="安装JAVA"></a>安装JAVA</h3><p>在安装时遇到一个错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi# apt-get install openjdk-8-jre</span><br><span class="line">Error: missing `server&apos; JVM at `/usr/lib/jvm/java-8-openjdk-armhf/jre/lib/arm/server/libjvm.so&apos;.</span><br><span class="line">Please install or use the JRE or JDK that contains these missing components.</span><br><span class="line">E: /etc/ca-certificates/update.d/jks-keystore exited with code 1.</span><br><span class="line">done.</span><br><span class="line">Setting up libatk-wrapper-java (0.33.3-13+deb9u1) ...</span><br><span class="line">Processing triggers for hicolor-icon-theme (0.15-1) ...</span><br><span class="line">dpkg: dependency problems prevent configuration of openjdk-8-jre-headless:armhf:</span><br><span class="line"> openjdk-8-jre-headless:armhf depends on ca-certificates-java; however:</span><br><span class="line">  Package ca-certificates-java is not configured yet.</span><br><span class="line"></span><br><span class="line">dpkg: error processing package openjdk-8-jre-headless:armhf (--configure):</span><br><span class="line"> dependency problems - leaving unconfigured</span><br><span class="line">dpkg: dependency problems prevent configuration of openjdk-8-jre:armhf:</span><br><span class="line"> openjdk-8-jre:armhf depends on openjdk-8-jre-headless (= 8u151-b12-1~deb9u1); however:</span><br><span class="line">  Package openjdk-8-jre-headless:armhf is not configured yet.</span><br><span class="line"></span><br><span class="line">dpkg: error processing package openjdk-8-jre:armhf (--configure):</span><br><span class="line"> dependency problems - leaving unconfigured</span><br><span class="line">Setting up libatk-wrapper-java-jni:armhf (0.33.3-13+deb9u1) ...</span><br><span class="line">Processing triggers for libc-bin (2.24-11+deb9u3) ...</span><br><span class="line">Errors were encountered while processing:</span><br><span class="line"> ca-certificates-java</span><br><span class="line"> openjdk-8-jre-headless:armhf</span><br><span class="line"> openjdk-8-jre:armhf</span><br><span class="line">E: Sub-process /usr/bin/dpkg returned an error code (1)</span><br></pre></td></tr></table></figure></p>
+<p>谷歌一下，在<a href="https://www.raspberrypi.org/forums/viewtopic.php?t=197824" target="_blank" rel="noopener">树莓派官方论坛</a>找到解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge openjdk-8-jre-headless</span><br><span class="line">sudo apt-get install openjdk-8-jre-headless</span><br><span class="line">sudo apt-get install openjdk-8-jre</span><br><span class="line">sudo apt-get install openjdk-8-jdk</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装MONGODB"><a href="#安装MONGODB" class="headerlink" title="安装MONGODB"></a>安装MONGODB</h3><p>直接通过仓库安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install mongodb</span><br><span class="line">root@raspberrypi:/home/pi# systemctl enable mongodb</span><br><span class="line">Failed to enable unit: File mongo.service: No such file or directory</span><br><span class="line">root@raspberrypi:/home/pi# systemctl enable mongodb</span><br><span class="line">Synchronizing state of mongodb.service with SysV service script with /lib/systemd/systemd-sysv-install.</span><br><span class="line">Executing: /lib/systemd/systemd-sysv-install enable mongodb</span><br><span class="line">root@raspberrypi:/home/pi# systemctl start mongodb</span><br></pre></td></tr></table></figure></p>
+<p>安装后测试一下是否可用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi/software/elasticsearch-5.5.2/bin# mongo</span><br><span class="line">MongoDB shell version: 2.4.14</span><br><span class="line">connecting to: test</span><br><span class="line">Server has startup warnings: </span><br><span class="line">Fri Mar 16 12:13:53.806 [initandlisten] </span><br><span class="line">Fri Mar 16 12:13:53.806 [initandlisten] ** NOTE: This is a 32 bit MongoDB binary.</span><br><span class="line">Fri Mar 16 12:13:53.806 [initandlisten] **       32 bit builds are limited to less than 2GB of data (or less with --journal).</span><br><span class="line">Fri Mar 16 12:13:53.806 [initandlisten] **       See http://dochub.mongodb.org/core/32bit</span><br><span class="line">Fri Mar 16 12:13:53.819 [initandlisten]</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装ELASTICSEARCH"><a href="#安装ELASTICSEARCH" class="headerlink" title="安装ELASTICSEARCH"></a>安装ELASTICSEARCH</h3><p>上面提到，目前最新版本的graylog2.4.3还不支持elasticsearch 6.x，这里选择下载安装5.x版本。<br>这里参考了<a href="https://www.jianshu.com/p/05052dfc21f6" target="_blank" rel="noopener">简书</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi# mkdir software</span><br><span class="line">root@raspberrypi:/home/pi# cd software/</span><br><span class="line">root@raspberrypi:/home/pi/software# wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.2.tar.gz</span><br><span class="line">root@raspberrypi:/home/pi/software# tar -xzvf elasticsearch-5.5.2.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>修改<code>/elasticsearch-5.5.2/config</code>目录下的配置文件：<code>elasticsearch.yml</code>和<code>jvp.option</code>：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6VUgxWmtSNENWekVpZytCUFJzTEI5TVAvM25Dc212TVlRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="cluster_name" title="">
+                </div>
+                <div class="image-caption">cluster_name</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6ZEhCVmp2amJJSmxhUmpaUVpxUWVUUHJqdW51Z2k0TDFRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="XMxs" title="">
+                </div>
+                <div class="image-caption">XMxs</div>
+            </figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi/software/elasticsearch-5.5.2# groupadd elsearch</span><br><span class="line">root@raspberrypi:/home/pi/software/elasticsearch-5.5.2# useradd elsearch -g elsearch</span><br><span class="line">root@raspberrypi:/home/pi/software# chown -R elsearch:elsearch  elasticsearch-5.5.2</span><br><span class="line">root@raspberrypi:/home/pi/software/elasticsearch-5.5.2# cd bin/</span><br><span class="line">root@raspberrypi:/home/pi/software/elasticsearch-5.5.2/bin# ./elasticsearch&amp;</span><br></pre></td></tr></table></figure></p>
+<p>安装后测试一下是否可用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi/software/elasticsearch-5.5.2/bin# curl 127.0.0.1:9200</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &quot;dEcU6MS&quot;,</span><br><span class="line">  &quot;cluster_name&quot; : &quot;graylog&quot;,</span><br><span class="line">  &quot;cluster_uuid&quot; : &quot;1XH8EGmsRC-NIChy7aRkmQ&quot;,</span><br><span class="line">  &quot;version&quot; : &#123;</span><br><span class="line">    &quot;number&quot; : &quot;5.5.2&quot;,</span><br><span class="line">    &quot;build_hash&quot; : &quot;b2f0c09&quot;,</span><br><span class="line">    &quot;build_date&quot; : &quot;2017-08-14T12:33:14.154Z&quot;,</span><br><span class="line">    &quot;build_snapshot&quot; : false,</span><br><span class="line">    &quot;lucene_version&quot; : &quot;6.6.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;tagline&quot; : &quot;You Know, for Search&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装和配置GRAYLOG"><a href="#安装和配置GRAYLOG" class="headerlink" title="安装和配置GRAYLOG"></a>安装和配置GRAYLOG</h2><p>参照<a href="docs.graylog.org/en/2.4/pages/installation/manual_setup.html">官方文档</a>，下载tarball：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar xvfz graylog-VERSION.tgz</span><br><span class="line">$ cd graylog-VERSION</span><br></pre></td></tr></table></figure></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6U01OU3NrYXp5RHhvbm1tVVVSYUNtYkFYT2VveENXYnd3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="graylog_conf1" title="">
+                </div>
+                <div class="image-caption">graylog_conf1</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6ZUpOZXdXVi8rUUZQTnRkWktIM012SkRCTUNPaTRqdXRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="graylog_conf2" title="">
+                </div>
+                <div class="image-caption">graylog_conf2</div>
+            </figure>
+<p>根据官方给出的示例，自己配置一下：</p>
+<blockquote>
+<p>password_secret =<br>root_password_sha2 =<br>root_timezone = Asia/Shanghai<br>rest_listen_uri =  <a href="http://0.0.0.0:9000/api/" target="_blank" rel="noopener">http://0.0.0.0:9000/api/</a><br>web_listen_uri = <a href="http://0.0.0.0:9000/" target="_blank" rel="noopener">http://0.0.0.0:9000/</a><br>allow_highlighting = true （运行查询结果高亮）<br>elasticsearch_shards = 1 （当前只安装了一个elasticsearch）<br>elasticsearch_index_prefix = graylog</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi/software/graylog-2.4.3# cd bin/</span><br><span class="line">root@raspberrypi:/home/pi/software/graylog-2.4.3/bin# ./graylogctl start</span><br></pre></td></tr></table></figure>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>等待一段时间(以树莓派的CPU，你懂得)，可以使用浏览器打开<code>graylog-server-address</code>(192.168.0.177)页面管理日志了。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFPeFZ3QW9IMkYwRHVwQUpkM1JGeFVKNmVjVnZOWGFLTnlSeDUxazZEM21nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="getting_started" title="">
+                </div>
+                <div class="image-caption">getting_started</div>
+            </figure><br>不过，使用一些天以后发现，部署graylog及其环境运行在树莓派下，就像大象骑在蚱蜢身上，真的很慢很慢，HAH。。。。。。。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://sevge.github.io/about">
+            <img src="/img/avatar.jpg" alt="Sevge">
+            Sevge
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/03/20/Install-graylog/&title=《RASPBIAN下从0部署GRAYLOG及其环境》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/03/20/Install-graylog/&title=《RASPBIAN下从0部署GRAYLOG及其环境》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/03/20/Install-graylog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RASPBIAN下从0部署GRAYLOG及其环境》 — Sevge's Blog&url=https://sevge.github.io/about/2018/03/20/Install-graylog/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/03/20/Install-graylog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/10/shenghuojiannan/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">生活艰难，也要快乐</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Common WiFi attacks and how to detect them</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Sevge &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/03/20/Install-graylog/&title=《RASPBIAN下从0部署GRAYLOG及其环境》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/03/20/Install-graylog/&title=《RASPBIAN下从0部署GRAYLOG及其环境》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/03/20/Install-graylog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RASPBIAN下从0部署GRAYLOG及其环境》 — Sevge's Blog&url=https://sevge.github.io/about/2018/03/20/Install-graylog/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/03/20/Install-graylog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3ay26DQAwF0Pz/T1OpWwS5tsmCmcOqQinMSSXXr88nvo7/63znfP/8+fPPV0+7etdjFwYGxmsZx+2VHDp5TvL8e/bV72JgYOzD6AXNyYHuv4j8bBgYGBjJIQphMUg9MTAwMOaM/DP3d/L7GBgYGNUic94Bm6ehGBgYuzGeSt1+8fMP5xsYGBgvYRzjqzfOzBPE6AwYGBhLM3pttftYlyeF+f0oVcXAwFiUUX1ZzpuPGcp/BwwMjEUZ85WvfFWiSs3PhoGBsTZjXkBWx5bVojdq/GFgYGzASMaWvfWISYAuDEExMDA2Y1RXSKuBeJ6SFj6EgYGxBCNfqshb+ZOA+1iDDwMDYyFGUkzm4XgO6G1/YWBg7MPoDSYnbf1qEllot2FgYCzH6LXPkldO7j+814aBgfFaRvUo1RbYpJ1XDv0YGBhLM5IQPMfkz88L4Cj4YmBgLMToAfKyM2/GjQaZGBgYyzHypYpqITopbvOgjIGBsQPjqcJ13qRLRgvl3BYDA2MJxn3Sloe8+aigtyJ2uTOCgYGxEGMScJ8tYqulLAYGxj6Mo3jdPzR/fa+59qXdhoGBsSijt71QPeJkzDA6NAYGxkKMJMiWu3eDpLAZ6DEwMDZgTNYvekPQ6v+E5mQDAwMD46HAmg8YMDAwMPJAWT1Wb3j5WJ2NgYGxBCMvYquvT76Oakn8ZTkMAwNjOUY1KPeSvCR9zAN6c+6BgYHxPsYfjnUd8/0QqrwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
