@@ -23,12 +23,12 @@
     <meta name="description" content="原版The issue with 802.11 Management framesThe 802.11 WiFi standard contains a special frame (think “packets” in classic, wired networking) type for network and connection management. For example, your">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Common WiFi attacks and how to detect them">
-<meta property="og:url" content="https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/index.html">
+<meta property="og:url" content="https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/index.html">
 <meta property="og:site_name" content="Sevge&#39;s Blog">
 <meta property="og:description" content="原版The issue with 802.11 Management framesThe 802.11 WiFi standard contains a special frame (think “packets” in classic, wired networking) type for network and connection management. For example, your">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFyM1dJczg1WlByMjhxSUdLbUYrUnhhZWcyY0xDajJod2h5bm5QZ1YzVkpBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-13T03:55:36.710Z">
+<meta property="og:updated_time" content="2018-04-13T04:14:33.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Common WiFi attacks and how to detect them">
 <meta name="twitter:description" content="原版The issue with 802.11 Management framesThe 802.11 WiFi standard contains a special frame (think “packets” in classic, wired networking) type for network and connection management. For example, your">
@@ -138,8 +138,8 @@
         <h1 class="title">Common WiFi attacks and how to detect them</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-04-12T03:36:57.000Z" itemprop="datePublished" class="page-time">
-  2018-04-12
+                <time datetime="2018-01-19T03:36:57.000Z" itemprop="datePublished" class="page-time">
+  2018-01-19
 </time>
 
 
@@ -171,7 +171,7 @@
     <div class="post-card">
         <h1 class="post-card-title">Common WiFi attacks and how to detect them</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-04-12 11:36:57" datetime="2018-04-12T03:36:57.000Z"  itemprop="datePublished">2018-04-12</time>
+            <time class="post-time" title="2018-01-19 11:36:57" datetime="2018-01-19T03:36:57.000Z"  itemprop="datePublished">2018-01-19</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络/">网络</a></li></ul>
@@ -230,22 +230,13 @@
 <p>与流量嗅探一样，这种行为同样是无法被检测到的。我唯一能给你的建议就是使用健壮的WiFi密码，并且不要使用WEP。</p>
 <h4 id="WiFi干扰"><a href="#WiFi干扰" class="headerlink" title="WiFi干扰"></a>WiFi干扰</h4><p>一般来说，检测WiFi干扰行为将需要相对专业的设备才进行，而且有时甚至还需要使用到信号发射塔。但是有趣的是，802.11标准给我们提供了一种更简单的方法：去认证帧和去关联帧。这些“去认证”帧可以被用于多种不同的场景，而且该标准提供了超过40种预定义的原因代码。下面给出的是一些合法的常用示例：</p>
 <blockquote>
-<pre><code>之前的身份认证失效；
-</code></pre></blockquote>
-<blockquote>
-<pre><code>由于不活动而导致的连接断开；
-</code></pre></blockquote>
-<blockquote>
-<pre><code>由于访问点无法处理当前所有的关联STA而导致的连接断开；
-</code></pre></blockquote>
-<blockquote>
-<pre><code>由于SAT不支持BSSBasicRateSet参数种的数据率而导致的拒绝连接；
-</code></pre></blockquote>
+<p>之前的身份认证失效；<br>由于不活动而导致的连接断开；<br>由于访问点无法处理当前所有的关联STA而导致的连接断开；<br>由于SAT不支持BSSBasicRateSet参数种的数据率而导致的拒绝连接；</p>
+</blockquote>
 <p>因为去认证帧属于管理帧的一种，所以它们是没有经过加密的，而攻击者甚至可以在无需连接该网络的情况下伪造这种帧。信号范围内的攻击者可以向目标用户所连接的热点发送连续的去认证帧来达到干扰WiFi的目的。</p>
 <h4 id="检测WiFi干扰器"><a href="#检测WiFi干扰器" class="headerlink" title="检测WiFi干扰器"></a>检测WiFi干扰器</h4><p>类似nzyme（即将发布）这样的工具可以发现这种去认证帧，而且我们还可以通过查看WiFi日志来发现这种帧。</p>
 <h4 id="流氓热点"><a href="#流氓热点" class="headerlink" title="流氓热点"></a>流氓热点</h4><p>接下来，我们讨论一下手机在自动连接至WiFi网络时会发生什么情况。一般来说，这种情况主要会发生在以下两种场景:</p>
 <blockquote>
-<p>手机获取已知WiFi网络的beacon帧，然后开始与距离最近（信号最强）的热点进行连接。<br> 手机给已知WiFi网络发送一个probe-request帧，可提供网络服务的接入点将响应一个probe-response帧。接下来，你的手机将会跟这个响应接入点进行连接。</p>
+<p>1.手机获取已知WiFi网络的beacon帧，然后开始与距离最近（信号最强）的热点进行连接。<br>2.手机给已知WiFi网络发送一个probe-request帧，可提供网络服务的接入点将响应一个probe-response帧。接下来，你的手机将会跟这个响应接入点进行连接。</p>
 </blockquote>
 <p>这里的问题就在于：任何设备都可以给任何网络发送beacon帧和probe-response帧。</p>
 <p>攻击者可以搭建一个便携式的流氓接入点，这个接入点不仅能够响应（probe-response）任何的probe-request帧，而且它们还能够给任何的目标网络发送beacon帧。</p>
@@ -282,7 +273,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -292,22 +283,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&source=My Blog" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Common WiFi attacks and how to detect them》 — Sevge's Blog&url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/&via=https://sevge.github.io/about" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Common WiFi attacks and how to detect them》 — Sevge's Blog&url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/&via=https://sevge.github.io/about" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -327,14 +318,21 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/10/shenghuojiannan/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">生活艰难，也要快乐</h4>
+      </a>
+    </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/04/12/Install-graylog/" id="post-next" class="post-nav-link">
+      <a href="/2017/12/18/fluxion/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Install graylog</h4>
+        <h4 class="title">使用Fluxion钓鱼</h4>
       </a>
     </div>
   
@@ -396,7 +394,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -406,22 +404,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/&title=《Common WiFi attacks and how to detect them》 — Sevge's Blog&source=My Blog" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Common WiFi attacks and how to detect them》 — Sevge's Blog&url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/&via=https://sevge.github.io/about" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Common WiFi attacks and how to detect them》 — Sevge's Blog&url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/&via=https://sevge.github.io/about" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/04/12/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/01/19/Common-WiFi-attacks-and-how-to-detect-them/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -432,7 +430,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aQW7DQAgF0Nz/0um+lZ0PDEkqPa8q1fb4zWIgwOMRX88/V/5UdZW/K/be9sDDw8Nb4z1vr6vFkjdcfXR19Xv8i63Hw8PDW+Mlx/T9U/fLJ4f7/bYm78HDw8P7Tl710M+3rMrGw8PD+y+8yRbs3YmHh4f3fl5eUMgLr9XtqFIP11rw8PDwYl6vNfXZv1f6e3h4eHjjrnreDEvuTI7vpHlW+Fo8PDy8BV5+4FbxZ5Pg0Z14eHh4y7x83CpfbFLOOPBteHh4eGu8XtKcH9+90NIrAUd5Oh4eHl6Ld3WkVssQ1ZJEb3PzNB0PDw9vm9dLmufJbt7QGg0E4OHh4R3lbbSvqil7Epzy9xTCAx4eHl6LV0hPi42oPE2fJOsvNhcPDw9vgTcp2ibljGpFOS/pFjYdDw8P7yiv2nzqlVZ7xYi8oHy5Ch4eHt4Cb1JEmKTm90GlN9CAh4eH9x5eNYXNBwXyYak8DBz7rYCHh4c34OVlhWSwYJJG5+GkV+TFw8PDO8WrHsS9YsHG0FUUKvDw8PAWeL0GWD72lCTTvXZa4Zvx8PDwjvKqw1XVkkHCng8rvJgpw8PDw1vgTZpePVLS1nrE1+Ub8PDw8BZ4vTJr3oLqjRRUyxOFyQg8PDy8ZV7+s783GlVtvDXXwsPDw3sj70A5IA4JhYP+bAzBw8PDG/N6ba1qYp1sQbXocPksHh4e3hovP7gnxYXqMMGBCw8PD+8tsHn7Kh8UyMND+b94eHh4C7zJGZs3/vNtmtx/OITg4eHh3fKqwaBa8M13Nw9ChUIwHh4e3hqvWn5NEuXehx5u4OHh4eF9GW+exVcLGc2UGg8PD++jvGqTLEmve+MLUYDBw8PDW+Plw1U5oDqUUG28RQk6Hh4e3gJv8oM/34hqm7+3KYfrGXh4eHi/7/kBepacccqOlsEAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3awa4aMQwFUP7/p1+3VVUy13ZMqXRYIRiSnFmMje3XK379/PY6X3P+JNnl3Y7V1V54eHh4a7yf4+vdNckK7w5d3f2MP/8KDw8Pb4+XPKbzMJBQk/BTXQcPDw/vO3n547t6y6psPDw8vP+Flye4+W/nV+Lh4eF9nlc9YhWZB5vJDcXDw8P7DK/Xmvq371f6e3h4eHjjrnq1GZZ/fg4zeRHk4bR4eHh4C7z8gVsdDsiR1d3LV+Lh4eEt887H6m3WK2f0zvaXvfDw8PCu8noL5QlxtTIwH2Vo/gAPDw8v5u2NCFSHtKrhoVDmwMPDw1vjzdvw1Vw+X3/U2cPDw8Nb4J0Xqqa81Uf/+fpqol9Ir/Hw8PBavEmDPy/pJiv3mmoPwQMPDw9vgZcEgxzQa2L1glBhsAAPDw/vKq+63K2ibb5XPsL1dnQADw8P7yovDwzV4mwvCb41/oWHh4e3zasOTvUKDZMhgN6YFx4eHt4er1o+yNPuPI2+Vf4olyTw8PDwirzCX/qgVT8JEr1ZqYcogIeHh7fAm5cAemlxL2Wv7o6Hh4e3wctHoHrl3d7QVTVlf5gpw8PDw1vg5e+r2+RBopdqP6yAh4eHt8DLH8qTENIr1ObliWgyAg8PD2+BlxRq86JDNeHuJe7RXnh4eHgf51WDRJ5kNx/08xiCh4eHd5WXl1+r4wLVUm+16PAwU4aHh4e3wEvaTtURq7yIMHr0V6u8eHh4eJdg+dEn3/ZGE5rf4uHh4S3wJs/YvPGfDxBMrr8cQvDw8PCOvDwY5IXXPFnvlRsK58HDw8Nb440Gm+LDXUh/i+fEw8PD+wZe3qyaDy70bj0eHh7eN/M2ftXrXr1F4uHh4a3x8rZW75O8iHCr7IuHh4e3x5v84c/LvtU2f++mXK5n4OHh4f15zS98i7tgGRhgkAAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
