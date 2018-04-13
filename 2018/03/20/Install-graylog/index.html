@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6U01OU3NrYXp5RHhvbm1tVVVSYUNtYkFYT2VveENXYnd3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6ZUpOZXdXVi8rUUZQTnRkWktIM012SkRCTUNPaTRqdXRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFPeFZ3QW9IMkYwRHVwQUpkM1JGeFVKNmVjVnZOWGFLTnlSeDUxazZEM21nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-13T14:43:58.576Z">
+<meta property="og:updated_time" content="2018-04-13T14:52:52.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RASPBIAN下从0部署GRAYLOG及其环境">
 <meta name="twitter:description" content="前言虽然在树莓派上安装的同样是Linux系统，但是官方文档基本都是基于AMD64的操作，在部署过程中遇到了一些麻烦无从解决。期间折腾了很多，还尝试通过docker安装，甚至还为此专门看了一遍docker文档。。。 不多废话，从0开始记录一下这中间正确的过程。 准备工作使用”SD FORMATTER”格式化sd卡；”WIN32 DISK IMAGEER”烧录官方系统RASPBIAN；完成后，在SD卡">
@@ -160,7 +160,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装JAVA"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装JAVA</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装MONGODB"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">安装MONGODB</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装ELASTICSEARCH"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">安装ELASTICSEARCH</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装和配置GRAYLOG"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装和配置GRAYLOG</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完成"><span class="post-toc-number">4.</span> <span class="post-toc-text">完成</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装依赖"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装依赖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装JAVA"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">安装JAVA</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装MONGODB"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">安装MONGODB</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装ELASTICSEARCH"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">安装ELASTICSEARCH</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装和配置GRAYLOG"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装和配置GRAYLOG</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完成"><span class="post-toc-number">5.</span> <span class="post-toc-text">完成</span></a></li></ol>
         </nav>
     </aside>
 
@@ -200,7 +200,7 @@
                 <div class="image-caption">swap</div>
             </figure>
 <p>最后，在bashrc中添加一条别名记录<code>alias ls=’ls –color’</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@raspberrypi:/home/pi/software# vim ~/.bashrc </span><br><span class="line">root@raspberrypi:/home/pi/software# exit</span><br><span class="line">root@raspberrypi:/home/pi/software# su root</span><br></pre></td></tr></table></figure></p>
-<p>##　安装依赖<br>官方文档给出的依赖如下：<br><figure class="image-bubble">
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>官方文档给出的依赖如下：<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGJ6Wm1EWFlGdmJ6UlY2VzZubnJ6YXVTTnhkZDlUUUJHSzUrQ2diNzY1WkVBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="requirements" title="">
