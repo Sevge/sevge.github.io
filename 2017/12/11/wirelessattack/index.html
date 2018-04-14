@@ -20,12 +20,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。 现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。 以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.">
+    <meta name="description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。 现在我要讲的就是破除这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。 以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无线密码攻击">
 <meta property="og:url" content="https://sevge.github.io/about/2017/12/11/wirelessattack/index.html">
 <meta property="og:site_name" content="Sevge&#39;s Blog">
-<meta property="og:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。 现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。 以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.">
+<meta property="og:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。 现在我要讲的就是破除这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。 以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0WUw3U0kySXpXcnB3Y1NNM1dxM3puRUhrbzRQdk1RVk5nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0YlQxRWNna3RMZ29UbmhxRzNwUnlPZDc1dUkrWXdySWdBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
@@ -52,10 +52,10 @@
 <meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0WXkyNVZ5TXRkRzZ2WElVVFc5WE9EWkxpM2dCZ25SUWRRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0ZjlLblBVWkw1UVZLdjY2WWRxOFFWd3hLVVNxektXcjFRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0Y3FoMVQ1N00rZEZkWlBpL1FwMDBDTVVMd0hrSFlLVEVnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-13T04:59:24.694Z">
+<meta property="og:updated_time" content="2018-04-14T02:13:15.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无线密码攻击">
-<meta name="twitter:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。 现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。 以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.">
+<meta name="twitter:description" content="前言当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。 现在我要讲的就是破除这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。 以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.">
 <meta name="twitter:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0WUw3U0kySXpXcnB3Y1NNM1dxM3puRUhrbzRQdk1RVk5nPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
     
         <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
@@ -200,9 +200,10 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当今时代，几乎每个人都离不开网络。随着网络的普及，无线网络逐渐扎根于人们的生活之中。然而，很多情况下，这些无线信号都需要身份验证后才能使用。</p>
-<p>现在我要讲的就是破解这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。</p>
+<p>现在我要讲的就是破除这道身份验证，连接上内网。当然，这不仅仅是可以上网了，做其他事情也更加方便。</p>
 <p>以下操作实验使用的都是自家无线路由器，使用的主要工具是Aircrack-ng。(Aircrack-ng是无线渗透测试的经典工具，它是一款基于破解无线802.11协议的WEP以及WPA-PSK加密的工具。)</p>
-<h2 id="WEP加密的无线网络"><a href="#WEP加密的无线网络" class="headerlink" title="WEP加密的无线网络"></a>WEP加密的无线网络</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Wired equivalent privacy（WEP）协议是对在两台设备间无线传输的数据进行加密的方式，用来防止非法用户窃听或者侵入无线网络。不过密码分析学家已经找出WEP的好几个弱点，因此2003年被WI-FI protected access（WPA）淘汰，又在2004年由完整的IEEE 802.11i标准（WPA2）所取代。不过，现在很多路由器基本都自带这种加密方式，仍然有相当多小白可能选择了这种加密方式。<br>WEP的破解为利用加密体制缺陷，通过收集足够的数据包，使用分析加密算法还原出密码。 </p>
+<h2 id="WEP加密的无线网络"><a href="#WEP加密的无线网络" class="headerlink" title="WEP加密的无线网络"></a>WEP加密的无线网络</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Wired equivalent privacy（WEP）协议是对在两台设备间无线传输的数据进行加密的方式，用来防止非法用户窃听或者侵入无线网络。不过密码分析学家已经找出WEP的好几个弱点，因此2003年被WI-FI protected access（WPA）淘汰，又在2004年由完整的IEEE 802.11i标准（WPA2）所取代。</p>
+<p>WEP的破解为利用加密体制缺陷，通过收集足够的数据包，使用分析加密算法还原出密码。 </p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>下面我以自家用路由器进行示例。<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -231,21 +232,25 @@
             </figure>
 <p>输出信息显示监听模式被启用，映射端口为wlan0mon。</p>
 </li>
-</ol>
-<p>3.使用<code>airodum-ng wlan0mon</code>命令定位附近所有可用的无线网络。<br><figure class="image-bubble">
+<li><p>使用<code>airodum-ng wlan0mon</code>命令定位附近所有可用的无线网络。</p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0Y1YyWkdQR0REWEJaZWFiR3ZMR2lUblJtb3F5MkF1T1FRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="scan" title="">
                 </div>
                 <div class="image-caption">scan</div>
-            </figure><br>以上输出信息显示了附近所有可用的无线网络。从输出信息可以看到很多参数：</p>
+            </figure>
+<p>以上输出信息显示了附近所有可用的无线网络。从输出信息可以看到很多参数：</p>
 <blockquote>
 <p>BSSID:无线的mac地址、<br>PWR：网卡报告的信号水平（这个值越小信号越好）<br>Beacons：无线发出的通告编号<br>CH：AP使用的信道（从Beacons中获取）<br>MB：无线所支持的最大速率<br>ENC：加密方式</p>
 </blockquote>
-<p>4.使用<code>airodump-ng</code>捕获指定BSSID的文件。<br>常用命令：</p>
+</li>
+<li><p>使用<code>airodump-ng</code>捕获指定BSSID的文件。<br>常用命令：</p>
 <blockquote>
 <p>-c 指定选择的频道<br>-w 指定一个文件名，用于保存捕获的数据<br>–bssid 指定攻击的Bssid</p>
 </blockquote>
+</li>
+</ol>
 <p>下面将Bssid为EC:26:CA:C6:CB:1B的无线路由器作为攻击目标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng -c 10 -w catch --bssid EC:26:CA:C6:CB:1B wlan0mon</span><br></pre></td></tr></table></figure></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -255,20 +260,25 @@
                 <div class="image-caption">airodump-ng</div>
             </figure>
 <p>从输出信息可以看到Essid为TP-LINK的无线路由器的beacons和#Data一直在变化，表示有客户端与AP发生数据交换。从以上命令执行完毕后，会生成一个名为catch-01系列的文件，为了方便后面破解时候的调用，所有保存的文件按顺序编了号，于是就多了-01这样的编号，后面再执行会有-02，-03，以此类推。</p>
-<p>5.打开一个新的终端窗口，执行aireplay命令。使用aireplay发送一些流量给无线路由器，以至于能够捕获到数据。其中，-b后接AP的mac，-h接我们自己网卡wlan0的mac地址<br><figure class="image-bubble">
+<ol>
+<li><p>打开一个新的终端窗口，执行aireplay命令。使用aireplay发送一些流量给无线路由器，以至于能够捕获到数据。其中，-b后接AP的mac，-h接我们自己网卡wlan0的mac地址</p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0Ui8vWSs5UmwrempaUGlDeS9kcmxxRFpVcEc3VHM3c3RBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="aireplay" title="">
                 </div>
                 <div class="image-caption">aireplay</div>
-            </figure><br>输出信息就是使用ARP Requests的方式来读取ARP请求报文的过程，此时回到airodump-ng界面查看，可以看到TP-LNK的Frames栏的数字在飞速地增加，在抓取的无线数据报文达到一定数量后，就可以开始破解，若不能成功就等待数据报文继续抓取，然后多尝试几次。</p>
-<p>6.使用Aircrack破解密码。<br>再新建一个终端，在新终端执行aircrack-ng catch-02.cap成功得到密码。其中第一次我抓了1W+ 的DATA没有出密码，第二次等得稍微久点，抓了2W+DATA出了密码<br>其中捕获文件用了大概半小时，破解密码仅仅用了四秒时间！<br><figure class="image-bubble">
+            </figure>
+<p>输出信息就是使用ARP Requests的方式来读取ARP请求报文的过程，此时回到airodump-ng界面查看，可以看到TP-LNK的Frames栏的数字在飞速地增加，在抓取的无线数据报文达到一定数量后，就可以开始破解，若不能成功就等待数据报文继续抓取，然后多尝试几次。</p>
+</li>
+<li><p>再新建一个终端，在新终端执行aircrack-ng catch-02.cap成功得到密码。其中第一次我抓了1W+ 的DATA没有出密码，第二次等得稍微久点，抓了2W+DATA出了密码<br>其中捕获文件用了大概半小时，破解密码仅仅用了四秒时间！</p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUFp0MEpaVmEzalN0YVdHR0I5V1BYR3R1VzZwODhEQWxianEvVythZkRBdWJBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="wep_catch" title="">
                 </div>
                 <div class="image-caption">wep_catch</div>
-            </figure></p>
+            </figure>
 <h3 id="获得KEY"><a href="#获得KEY" class="headerlink" title="获得KEY"></a>获得KEY</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -276,6 +286,8 @@
                 </div>
                 <div class="image-caption">found_wep_key</div>
             </figure>
+</li>
+</ol>
 <h2 id="WPA、WPA2加密的网络"><a href="#WPA、WPA2加密的网络" class="headerlink" title="WPA、WPA2加密的网络"></a>WPA、WPA2加密的网络</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>WPA全名为Wi-Fi Proteted Access，有WPA和WPA2两个标准。它是一种保护无线电脑网络安全的协议。对于启用WPA/WPA2加密的无线网络，其攻击和破解步骤及攻击时完全一样的。当使用aireplay-ng进行攻击后，同样获取到WPA握手数据包及提示；在破解时需要提供一个密码字典。</p>
 <h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><p>这里我仍然以我家的路由器为例：<br><figure class="image-bubble">
                 <div class="img-lightbox">

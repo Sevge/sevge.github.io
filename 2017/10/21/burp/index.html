@@ -20,12 +20,12 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="发现本学期升级的校园网，网页登陆验证很是简陋，不需要验证码，明文传输                                                                                             HUNAU">
+    <meta name="description" content="发现本学期升级的校园网，网页登陆的认证端很是简陋，不需要验证码，明文传输                                                                                             HUNAU">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Burp Suite模块之Lntruder暴力破解网页登陆">
 <meta property="og:url" content="https://sevge.github.io/about/2017/10/21/burp/index.html">
 <meta property="og:site_name" content="Sevge&#39;s Blog">
-<meta property="og:description" content="发现本学期升级的校园网，网页登陆验证很是简陋，不需要验证码，明文传输                                                                                             HUNAU">
+<meta property="og:description" content="发现本学期升级的校园网，网页登陆的认证端很是简陋，不需要验证码，明文传输                                                                                             HUNAU">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLTEtKcFFWc1cvYnVmc3lxaEluZjVaa2I3Q3I4MGtPemt3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLTHIwUlc2Nm5Bc0t1ZUdLQ3d6NUdlbWU4V01OZngvVHdRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
@@ -41,10 +41,10 @@
 <meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLQUpsbkcxbWsvNVdXWHh5YmtJa1pZN0ZQbnQvZDhydFhRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLSWV2Sk5BRVRYYzZxREJKLyswei94bHhZbEdnSmIyaCtBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf4.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLSWV2Sk5BRVRYYzZiQWRLczFHREV3Sm1DbUZ2THpZY0h3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-04-13T05:46:55.799Z">
+<meta property="og:updated_time" content="2018-04-14T02:01:20.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Burp Suite模块之Lntruder暴力破解网页登陆">
-<meta name="twitter:description" content="发现本学期升级的校园网，网页登陆验证很是简陋，不需要验证码，明文传输                                                                                             HUNAU">
+<meta name="twitter:description" content="发现本学期升级的校园网，网页登陆的认证端很是简陋，不需要验证码，明文传输                                                                                             HUNAU">
 <meta name="twitter:image" content="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLTEtKcFFWc1cvYnVmc3lxaEluZjVaa2I3Q3I4MGtPemt3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
     
         <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
@@ -166,7 +166,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#发现"><span class="post-toc-number">1.</span> <span class="post-toc-text">发现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抓包"><span class="post-toc-number">3.</span> <span class="post-toc-text">抓包</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#发现"><span class="post-toc-number">1.</span> <span class="post-toc-text">发现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抓取"><span class="post-toc-number">3.</span> <span class="post-toc-text">抓取</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用</span></a></li></ol>
         </nav>
     </aside>
 
@@ -188,7 +188,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h2><p>本学期升级的校园网，网页登陆验证很是简陋，不需要验证码，明文传输<br><figure class="image-bubble">
+            <h2 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h2><p>本学期升级的校园网，网页登陆的认证端很是简陋，不需要验证码，明文传输<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf5.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLTEtKcFFWc1cvYnVmc3lxaEluZjVaa2I3Q3I4MGtPemt3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="HUNAU" title="">
@@ -200,7 +200,8 @@
                     <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLTHIwUlc2Nm5Bc0t1ZUdLQ3d6NUdlbWU4V01OZngvVHdRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="Auth_Info" title="">
                 </div>
                 <div class="image-caption">Auth_Info</div>
-            </figure><br>而我们知道，新的网络，密码都是由身份证后6位组成，<br>可以使用之前Crunch生成的对应字典，这里以我自己的账号作为测试。</p>
+            </figure><br>而且，新升级的网络，默认密码都是由身份证后6位组成，<br>于是可以使用之前所说的Crunch生成的对应字典来玩玩。</p>
+<p>这里以我自己的账号作为测试。</p>
 <h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -215,8 +216,7 @@
                 </div>
                 <div class="image-caption">FirefoxSet</div>
             </figure>
-<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2><p>在跳转的登陆界面</p>
-<p><code>http://10.100.0.12:9090/zportal/loginForWeb?wlanuserip=37c61a32243725e8412223107e8670d4&amp;wlanacname=00aab905808bf54238202dd3074e226b&amp;ssid=99f34848c4e3872f&amp;nasip=3a55a6e233ce66a3e3c9d19c2572b2ea&amp;snmpagentip=&amp;mac=e2483bb22f79a96b0b178e83ca255d91&amp;t=wireless-v2&amp;url=63651eaa103df95e80e6576b018a1055&amp;apmac=&amp;nasid=00aab905808bf54238202dd3074e226b&amp;vid=6ff7431ed4e21b22&amp;port=e2bcde16e9a8b04a&amp;nasportid=a25b45948c15af40d095454b31cfa807fcfd7ec39a63f462933adb33ce566a2a</code><br>中抓取到：<br><figure class="image-bubble">
+<h2 id="抓取"><a href="#抓取" class="headerlink" title="抓取"></a>抓取</h2><p>在跳转的登陆界面<br><code>http://10.100.0.12:9090/zportal/loginForWeb?wlanuserip=37c61a32243725e8412223107e8670d4&amp;wlanacname=00aab905808bf54238202dd3074e226b&amp;ssid=99f34848c4e3872f&amp;nasip=3a55a6e233ce66a3e3c9d19c2572b2ea&amp;snmpagentip=&amp;mac=e2483bb22f79a96b0b178e83ca255d91&amp;t=wireless-v2&amp;url=63651eaa103df95e80e6576b018a1055&amp;apmac=&amp;nasid=00aab905808bf54238202dd3074e226b&amp;vid=6ff7431ed4e21b22&amp;port=e2bcde16e9a8b04a&amp;nasportid=a25b45948c15af40d095454b31cfa807fcfd7ec39a63f462933adb33ce566a2a</code><br>中抓取到：<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLTHIwUlc2Nm5Bc0t1ZUdLQ3d6NUdlbWU4V01OZngvVHdRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="CatchInfo" title="">
@@ -253,7 +253,7 @@
                     <img src="http://imglf6.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLRWVwbDhhQWpFTFAyRmR5NzIrd3dLTnVHUGVNV29uYzZnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="Burp_case5" title="">
                 </div>
                 <div class="image-caption">Burp_case5</div>
-            </figure><br>接着option选项卡里，修改线程为10,可以根据实际网络情况加大。有些网站可能会有保护措施，重复登录多次后会封IP，但明显这个认证界面没有这个保护<br><figure class="image-bubble">
+            </figure><br>接着option选项卡里，修改线程为10,可以根据实际网络情况加大。有些网站可能会有保护措施，重复登录多次后会封IP，但明显这个认证端没有这个保护<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGJTN3BjTUdoQTZLSXZUVVMwT2tvQm5SSGFNTVV1YkpHM05qd0lBekRqbStnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="Burp_case6" title="">

@@ -20,22 +20,22 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="前言实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接 Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所以网络功能也无异于主机。并且和主机处于同一网段。 原理桥接模">
+    <meta name="description" content="前言实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。 其实一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接。以下所说的是VMware常用的三种网络模式。 Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所以网络功">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VMware的三种网络模式">
 <meta property="og:url" content="https://sevge.github.io/about/2017/11/12/vmware-3-mode/index.html">
 <meta property="og:site_name" content="Sevge&#39;s Blog">
-<meta property="og:description" content="前言实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接 Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所以网络功能也无异于主机。并且和主机处于同一网段。 原理桥接模">
+<meta property="og:description" content="前言实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。 其实一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接。以下所说的是VMware常用的三种网络模式。 Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所以网络功">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/05/CCA839.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/05/CCAJj1.png">
 <meta property="og:image" content="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFJMjN6QVRFOGJsc00vRVdkTk1RYStvSUhHMWwwZUZsOSsvNVZ3RGJOQ3pnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/05/CCAgDP.png">
 <meta property="og:image" content="https://s1.ax1x.com/2018/04/05/CCA2Hf.png">
-<meta property="og:updated_time" content="2018-04-13T05:46:02.356Z">
+<meta property="og:updated_time" content="2018-04-14T02:07:26.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VMware的三种网络模式">
-<meta name="twitter:description" content="前言实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接 Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所以网络功能也无异于主机。并且和主机处于同一网段。 原理桥接模">
+<meta name="twitter:description" content="前言实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。 其实一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接。以下所说的是VMware常用的三种网络模式。 Bridged 桥接模式特点虚拟机和主机是处于同等地位的机器，所以网络功">
 <meta name="twitter:image" content="https://s1.ax1x.com/2018/04/05/CCA839.png">
     
         <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
@@ -179,7 +179,8 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实验室新来的学弟学妹们没有相关的计算机网络概念，在VMware安装好后，遇到没有网络的情况经常不知道怎么办。</p>
+<p>其实一般虚拟机安装好之后，会自动添加两张网卡(VMnet1和VMnet8),VMnet1是用户通过Host-only的网络连接，VMnet8是通过NAT方式的网络连接。以下所说的是VMware常用的三种网络模式。</p>
 <h2 id="Bridged-桥接模式"><a href="#Bridged-桥接模式" class="headerlink" title="Bridged 桥接模式"></a>Bridged 桥接模式</h2><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>虚拟机和主机是处于同等地位的机器，所以网络功能也无异于主机。并且和主机处于同一网段。</p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>桥接模式，使用的是VMnet0虚拟网卡。</p>
 <p>vmnet0实际上就是一个虚拟的网桥(2层交换机)，这个网桥有若干个接口，一个端口用于连接你的Host主机，其余端口可以用于连接虚拟机，他们的位置是对等的，谁也不是谁的网关。所以桥接模式下，虚拟机和Host主机是同等地位的主机。<br><figure class="image-bubble">
@@ -195,7 +196,7 @@
                     <img src="https://s1.ax1x.com/2018/04/05/CCAJj1.png" alt="vmnet0_1" title="">
                 </div>
                 <div class="image-caption">vmnet0_1</div>
-            </figure><br>这个模式在一般局域网常用到，但是在寝室园区使用桥接的话，由于需要认证才能上网，所以不能用这种方式</p>
+            </figure><br>这个模式在一般局域网常用到，但是在寝室园区使用桥接的话，由于需要认证才能上网，所以不能使用这种方式</p>
 <h2 id="Host-only模式"><a href="#Host-only模式" class="headerlink" title="Host-only模式"></a>Host-only模式</h2><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><p>只能和主机相互通信，不能上网，也不能访问其他主机，用于建立与外部隔离的网络环境</p>
 <h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>Host-only模式使用的是VMnet1网卡。</p>
 <p>这种方式下，虚拟机连接到VMnet1上，但系统并不为其提供任何路由服务，因此虚拟机只能和宿主机进行通信，而不能连接到真正的网络上。</p>
@@ -205,7 +206,7 @@
                     <img src="http://imglf3.nosdn.127.net/img/c09lVS9TR3YrUGFJMjN6QVRFOGJsc00vRVdkTk1RYStvSUhHMWwwZUZsOSsvNVZ3RGJOQ3pnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0" alt="vmnet1" title="">
                 </div>
                 <div class="image-caption">vmnet1</div>
-            </figure><br>这个模式不常用，因为它连接不到网络，但是它是nat的基础</p>
+            </figure><br>这个模式连接不到网络，但是它是NAT模式的基础</p>
 <h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><h3 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h3><blockquote>
 <ol>
 <li>主机ping不通虚拟机(包括宿主)</li>
@@ -215,7 +216,7 @@
 </ol>
 </blockquote>
 <h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><p>网络地址转换类似于家庭路由器的方式工作。使用NAT模式，就是让虚拟系统借助NAT（网路地址转换）功能，通过宿主机器所在的网络来访问公网。</p>
-<p>其实就是虚拟机的网卡连接到宿主的VMnet8虚拟机交换机上，VMnet8充当了路由器的作用，负责将虚拟机转发到VMnet8的包进行地址转换之后发送到实际的网络中，再降实际网络上返回的包进行地址转换后通过VMnet8发送给虚拟机。</p>
+<p>其实就是虚拟机的网卡连接到宿主的VMnet8虚拟机交换机上，VMnet8充当了路由器的作用，负责将虚拟机转发到VMnet8的包进行地址转换之后发送到实际的网络中，再将实际网络上返回的包进行地址转换后通过VMnet8发送给虚拟机。</p>
 <p>它相比Host-only模式只不过增加一层路由功能。</p>
 <h3 id="示例图-2"><a href="#示例图-2" class="headerlink" title="示例图"></a>示例图</h3><p>主机A和虚拟机1和2能相互通信，虚拟机1和2能访问主机B和外网，主机B不能访问虚拟机1和2，虚拟机1和2能相互通信<br><figure class="image-bubble">
                 <div class="img-lightbox">
@@ -226,9 +227,9 @@
             </figure><br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://s1.ax1x.com/2018/04/05/CCA2Hf.png" alt="vmnet8_1" title="">
+                    <img src="https://s1.ax1x.com/2018/04/05/CCA2Hf.png" alt="NAT" title="">
                 </div>
-                <div class="image-caption">vmnet8_1</div>
+                <div class="image-caption">NAT</div>
             </figure><br>一般在学校的环境下（连接因特网需要锐捷认证），使用这种模式虚拟机就能快捷地连接到因特网。</p>
 
         </div>
