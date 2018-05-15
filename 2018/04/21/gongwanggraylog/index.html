@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>阿里云轻量应用服务器下部署Graylog2 | Sevge&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="前言前面有折腾过在树莓派上部署Graylog，受限于树莓派的性能，最终还是放弃用树莓派来干这么重的活了。正好同学买了一台学生云服务器(Ubuntu 16.04 1核2G)闲置着，本着不折腾不舒服的原则，我又借过来玩一玩。 步骤前人有写过教程安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。服务器本地测试没有问题，在我的浏览器中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云轻量应用服务器下部署Graylog2">
+<meta property="og:url" content="https://sevge.github.io/about/2018/04/21/gongwanggraylog/index.html">
+<meta property="og:site_name" content="Sevge&#39;s Blog">
+<meta property="og:description" content="前言前面有折腾过在树莓派上部署Graylog，受限于树莓派的性能，最终还是放弃用树莓派来干这么重的活了。正好同学买了一台学生云服务器(Ubuntu 16.04 1核2G)闲置着，本着不折腾不舒服的原则，我又借过来玩一玩。 步骤前人有写过教程安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。服务器本地测试没有问题，在我的浏览器中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-21T13:21:12.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阿里云轻量应用服务器下部署Graylog2">
+<meta name="twitter:description" content="前言前面有折腾过在树莓派上部署Graylog，受限于树莓派的性能，最终还是放弃用树莓派来干这么重的活了。正好同学买了一台学生云服务器(Ubuntu 16.04 1核2G)闲置着，本着不折腾不舒服的原则，我又借过来玩一玩。 步骤前人有写过教程安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。服务器本地测试没有问题，在我的浏览器中">
+    
+        <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Sevge</h5>
+          <a href="mailto:sevge6582@gmail.com" title="sevge6582@gmail.com" class="mail">sevge6582@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">阿里云轻量应用服务器下部署Graylog2</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">阿里云轻量应用服务器下部署Graylog2</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-21T13:00:27.000Z" itemprop="datePublished" class="page-time">
+  2018-04-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤"><span class="post-toc-number">2.</span> <span class="post-toc-text">步骤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#踩的坑"><span class="post-toc-number">3.</span> <span class="post-toc-text">踩的坑</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-gongwanggraylog"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">阿里云轻量应用服务器下部署Graylog2</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-21 21:00:27" datetime="2018-04-21T13:00:27.000Z"  itemprop="datePublished">2018-04-21</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面有折腾过在树莓派上部署Graylog，受限于树莓派的性能，最终还是放弃用树莓派来干这么重的活了。<br>正好同学买了一台学生云服务器(Ubuntu 16.04 1核2G)闲置着，本着不折腾不舒服的原则，我又借过来玩一玩。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>前人有写过<a href="https://www.aliyun.com/jiaocheng/118555.html?spm=5176.100033.2.5.hkYTKX" target="_blank" rel="noopener">教程</a><br>安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。<br>服务器本地测试没有问题，在我的浏览器中可以打开页面<br>本地测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl curl -X GET http://localhost:9000</span><br></pre></td></tr></table></figure></p>
+<p>浏览器测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://公网IP:9000</span><br></pre></td></tr></table></figure></p>
+<p>一切顺畅，真是简单啊……<br>在Graylog加载完成后，报出服务器不可用的错误。</p>
+<h2 id="踩的坑"><a href="#踩的坑" class="headerlink" title="踩的坑"></a>踩的坑</h2><p>本以为之前在树莓派上踩过的坑够多，在这云服务器上搭建只是三五分钟的事情。后来从吃完晚饭起，不知不觉又折腾了很久……<br>先是检查服务器防火墙问题，然后看阿里云控制台那边，试着将所有端口打开。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getenforce</span><br><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure></p>
+<p>还是不行，又试着修改Graylog中<code>rest_listen_uri</code>和<code>web_listen_uri</code>的端口和地址。<br>无果，最后谷歌在官方论坛找到<a href="https://community.graylog.org/t/server-currently-unavailable-error-is-coming-while-trying-to-access-from-browser/503/3" target="_blank" rel="noopener">答案</a><br><code>okay I seem to have it working.
+Set the rest_listen_uri to the private ip on the host that the public ip NATs to.
+set the web_listen_uri to the private ip on the host that the public ip NATs to
+set the web_endpoint_uri to http://public 26 IP :9000/api/ ( this is basically the same as the rest_listen_uri but with the public ip instead of the private IP )</code><br>在Graylog配置文件中，将<code>rest_listen_uri</code>和<code>web_listen_uri</code> 这两项设置为内网IP地址，将本注释掉的内容<code>web_endpoint_uri</code>设置为公网IP地址，完成后重启服务。<br>果然网上的老哥个个都是人才，说的话好听又管用！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://sevge.github.io/about">
+            <img src="/img/avatar.jpg" alt="Sevge">
+            Sevge
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/&title=《阿里云轻量应用服务器下部署Graylog2》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/&title=《阿里云轻量应用服务器下部署Graylog2》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/04/21/gongwanggraylog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《阿里云轻量应用服务器下部署Graylog2》 — Sevge's Blog&url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/15/win7-double-system/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">在WIN8/10的基础上装WIN7实现双系统开机</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/13/shamo500/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">shamo500</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Sevge &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/&title=《阿里云轻量应用服务器下部署Graylog2》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/&title=《阿里云轻量应用服务器下部署Graylog2》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/04/21/gongwanggraylog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《阿里云轻量应用服务器下部署Graylog2》 — Sevge's Blog&url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/04/21/gongwanggraylog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aQW7DMAwF0d7/0u66CCzPJ5UCFkerILYVPwUgSEo/P3hcH4Pcc3fn51Prb7YNGTJkvJZxLQdhkKf4nevvbxdIhgwZAxjrULgOizwQpwGdvJsMGTJkpIy7p8gM5CkZMmTI4AweTNPyVYYMGTI6RSxvh6XzrD9vrsVlyJDxQkYaHP/z81f2N2TIkPEqxhUOnsaRoJmG19t5ZMiQcTSjlurxl64dxai9jwwZMiYweBCstdJ4olk8KCZDhoxDGR09h9WOnfHFlSFDxgRGrR3Pl4AvE9/C/HNVhgwZRzPSAxa89cbDbpqMolRVhgwZxzHWYbTTrOeJIw/EwT8gQ4aMMYy0rd8JuOsk8iHFlCFDxhhGP+EjV/nmZbCFIEOGjEMZ5PAESRnTzUu+QMXyVYYMGcMYu3j9IjaeQoYMGUczaoGydrVT0D6khjJkyDiCkZaOaQLXSQf5ssqQIWMCg0+aBkeyOco3J9JFkSFDxgRG+vP8gMXmpFCGDBkDGPyAFzly0QnN/Hjr7WELGTJkHM3gJSj5mVqkD7YtZciQMZjRSQd5yE6ba6jRJkOGjEMZVzjWT+06QkHCelC+ypAh4+WMTtONvxDH85J1W+9QhgwZL2F0ytRaey5NNNHCyZAhYwBjV+DjSWG/iH1ot8mQIWM8gzfp1q+4jSpDhgwZIJkj8/c3Mh+KWBkyZBzN+MaxMN6qSzcYZMiQMY3BS0fS4u9sfKYhW4YMGQMYv7UDIuCdGEJAAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>在WIN8/10的基础上装WIN7实现双系统开机 | Sevge&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="前言最近自己搭建了一个毒奶粉私服玩，服务器搭建过程就不说了。客户端搭建也需要一定折腾，不想折腾的童鞋可以点击右上角的”X”了。 配置环境受WIN8/10某些系统补丁的影响，客户端版本只能在WIN7环境下才能正常运行。第一步就是准备游戏所需的基本环境了——WIN7系统。鉴于装系统的过程中有一些敏感操作，建议在整个过程开始前将所有安（liu）全（mang）软件关闭。 下载软件目前国内已经有对应的软件能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在WIN8&#x2F;10的基础上装WIN7实现双系统开机">
+<meta property="og:url" content="https://sevge.github.io/about/2018/05/15/win7-double-system/index.html">
+<meta property="og:site_name" content="Sevge&#39;s Blog">
+<meta property="og:description" content="前言最近自己搭建了一个毒奶粉私服玩，服务器搭建过程就不说了。客户端搭建也需要一定折腾，不想折腾的童鞋可以点击右上角的”X”了。 配置环境受WIN8/10某些系统补丁的影响，客户端版本只能在WIN7环境下才能正常运行。第一步就是准备游戏所需的基本环境了——WIN7系统。鉴于装系统的过程中有一些敏感操作，建议在整个过程开始前将所有安（liu）全（mang）软件关闭。 下载软件目前国内已经有对应的软件能">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-15T08:55:30.635Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在WIN8&#x2F;10的基础上装WIN7实现双系统开机">
+<meta name="twitter:description" content="前言最近自己搭建了一个毒奶粉私服玩，服务器搭建过程就不说了。客户端搭建也需要一定折腾，不想折腾的童鞋可以点击右上角的”X”了。 配置环境受WIN8/10某些系统补丁的影响，客户端版本只能在WIN7环境下才能正常运行。第一步就是准备游戏所需的基本环境了——WIN7系统。鉴于装系统的过程中有一些敏感操作，建议在整个过程开始前将所有安（liu）全（mang）软件关闭。 下载软件目前国内已经有对应的软件能">
+    
+        <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Sevge</h5>
+          <a href="mailto:sevge6582@gmail.com" title="sevge6582@gmail.com" class="mail">sevge6582@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">在WIN8/10的基础上装WIN7实现双系统开机</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">在WIN8/10的基础上装WIN7实现双系统开机</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-15T08:22:30.000Z" itemprop="datePublished" class="page-time">
+  2018-05-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载软件"><span class="post-toc-number">3.</span> <span class="post-toc-text">下载软件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#下载分区助手"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">下载分区助手</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#下载软媒魔方"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">下载软媒魔方</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分区和装载"><span class="post-toc-number">4.</span> <span class="post-toc-text">分区和装载</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分区"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">分区</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#装载"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">装载</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-win7-double-system"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">在WIN8/10的基础上装WIN7实现双系统开机</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-15 16:22:30" datetime="2018-05-15T08:22:30.000Z"  itemprop="datePublished">2018-05-15</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近自己搭建了一个毒奶粉私服玩，服务器搭建过程就不说了。客户端搭建也需要一定折腾，不想折腾的童鞋可以点击右上角的”X”了。</p>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>受WIN8/10某些系统补丁的影响，客户端版本只能在WIN7环境下才能正常运行。第一步就是准备游戏所需的基本环境了——WIN7系统。<br>鉴于装系统的过程中有一些敏感操作，建议在整个过程开始前将所有安（liu）全（mang）软件关闭。</p>
+<h2 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a>下载软件</h2><p>目前国内已经有对应的软件能直接一键完成这些任务。一下提供对应的链接和操作过程：</p>
+<h3 id="下载分区助手"><a href="#下载分区助手" class="headerlink" title="下载分区助手"></a>下载分区助手</h3><p>进入<a href="https://www.disktool.cn/download.html" target="_blank" rel="noopener">分区助手</a>下载页面，下载绿色版本，免于安装。<br><a href="">!fenquzhushou</a></p>
+<h3 id="下载软媒魔方"><a href="#下载软媒魔方" class="headerlink" title="下载软媒魔方"></a>下载软媒魔方</h3><p>进入<a href="http://mofang.ruanmei.com/" target="_blank" rel="noopener">软媒魔方</a>官网下载绿色版本。</p>
+<h2 id="分区和装载"><a href="#分区和装载" class="headerlink" title="分区和装载"></a>分区和装载</h2><p>之后，分别将以上得到的压缩包解压到相应的目录。</p>
+<h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>在分区助手的目录下找到”PartAssit”，双击打开。<br>查看界面上磁盘的使用情况，选择一块剩余空间比较大的磁盘。选中，右键单击选择切割分区。<br>我选择分给它50G。</p>
+<h3 id="装载"><a href="#装载" class="headerlink" title="装载"></a>装载</h3><p>在软媒魔方的目录下找到”hdboot”，双击打开。<br>按照软件提供的必要参数，选择镜像文件，推荐MSDN吧提供的<a href="http://tieba.baidu.com/p/3946202816" target="_blank" rel="noopener">WIN7旗舰版</a>。<br>镜像解压位置选择刚刚分区多出来的一块盘。<br>第三第四选项根据自己需要选择，我的启动项描述为”WIN-7-DNF”。<br>最后，点击开始装机。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://sevge.github.io/about">
+            <img src="/img/avatar.jpg" alt="Sevge">
+            Sevge
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/05/15/win7-double-system/&title=《在WIN8/10的基础上装WIN7实现双系统开机》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/05/15/win7-double-system/&title=《在WIN8/10的基础上装WIN7实现双系统开机》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/05/15/win7-double-system/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在WIN8/10的基础上装WIN7实现双系统开机》 — Sevge's Blog&url=https://sevge.github.io/about/2018/05/15/win7-double-system/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/05/15/win7-double-system/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/21/gongwanggraylog/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">阿里云轻量应用服务器下部署Graylog2</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Sevge &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/05/15/win7-double-system/&title=《在WIN8/10的基础上装WIN7实现双系统开机》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/05/15/win7-double-system/&title=《在WIN8/10的基础上装WIN7实现双系统开机》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2018/05/15/win7-double-system/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在WIN8/10的基础上装WIN7实现双系统开机》 — Sevge's Blog&url=https://sevge.github.io/about/2018/05/15/win7-double-system/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2018/05/15/win7-double-system/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS27DMAxF0ex/0+60QBHlPlIpIOpqFDhB7OMBwd/rhc/z6/y9Qq6v/3l9ZduRIUPGsYxneVIG/+faS3l7RxkyZFzAWIfCd5/5t+swumaQMC1DhgwZ6+Cb8tJALEOGDBkpg4dIzuD3lSFDxs0MHvg6DbU+eEMtLkOGjAMZvOv+/5+/Mt+QIUPGUYwnPLyh1kkE46eSIUPGaAYPcGkjjBS9QYFK7iJDhoyhjLS53yl6eauOPMOr9tAyZMg4ltF5lLQBl4ZjNEaVIUPGNQxeUvL1i1pamS6TyZAhYzYjXfkiKd3el8LTShkyZExldBrxaQjmQZZUqa0RpgwZMo5ipGPIXQODWqMNteFkyJAxlEEC5d7hJR9bBmWzDBkyLmDEEbqxhBq30tI8V4YMGYMYtcFkZ0jQKWKLOyMyZMg4nNEJr/w2tQflr1iGDBmzGXxYuGuFizfUguRShgwZ1zA4gBeZ314ykyFDxg0MPmjkoTBN9WqDzGDlQoYMGSMYvIgtTh5w866WdMqQIeM2Rm3ZIi2G06YbCs0yZMi4gNFZBatNJNJ088MvZciQMZTxhIc39DsrFHHxLEOGjNEMfviyVyeJ5EPNdPlMhgwZpzM6Ta5a44wvUgTBWoYMGRcwOgUqL2LT9DFAypAhQ8YysNZWKNJkFO2JyJAhQ0bYst+7UhZMYmXIkDGUQYrY2mppbcDwxXabDBkyDmTUVhz6CWVtwaI11JQhQ8Z5jB8JSkHPV5m5WQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
