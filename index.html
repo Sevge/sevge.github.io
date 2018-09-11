@@ -172,10 +172,15 @@
 
     
         准备工作老惯例，SELINX和IPTABLES先清一下12setenforce 0service firewalld stop
+整体架构如下：
+                
+                    
+                    
+                
+                架构图
+            
 配置最外层的防火墙（路由）
-先在虚拟机上添加一块网卡，采用桥接模式
-复制/etc/sysconfig/network-script/ifcfg-ens33一份到/etc/sysconfig/network-script/ifcfg-ens37
-记得修改其中的内容为e...
+先在...
     
 
         <a href="/2018/09/11/linux-enterprise-cluster/" class="post-more waves-effect waves-button">
