@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Sevge&#39;s Blog">
 <meta property="og:description" content="前言前面有折腾过在树莓派上部署Graylog，受限于树莓派的性能，最终还是放弃用树莓派来干这么重的活了。正好同学买了一台轻量级应用服务器(Ubuntu 16.04 1核2G)闲置着，本着不折腾不舒服的原则，我又借过来玩一玩。 步骤前人有写过教程安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。服务器本地测试没有问题，在我的浏览">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-22T02:27:53.082Z">
+<meta property="og:updated_time" content="2018-09-11T00:45:20.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云轻量应用服务器下部署Graylog2">
 <meta name="twitter:description" content="前言前面有折腾过在树莓派上部署Graylog，受限于树莓派的性能，最终还是放弃用树莓派来干这么重的活了。正好同学买了一台轻量级应用服务器(Ubuntu 16.04 1核2G)闲置着，本着不折腾不舒服的原则，我又借过来玩一玩。 步骤前人有写过教程安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。服务器本地测试没有问题，在我的浏览">
@@ -174,9 +174,9 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面有折腾过在树莓派上部署Graylog，受限于树莓派的性能，最终还是放弃用树莓派来干这么重的活了。<br>正好同学买了一台轻量级应用服务器(Ubuntu 16.04 1核2G)闲置着，本着不折腾不舒服的原则，我又借过来玩一玩。</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>前人有写过<a href="https://www.aliyun.com/jiaocheng/118555.html?spm=5176.100033.2.5.hkYTKX" target="_blank" rel="noopener">教程</a><br>安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。<br>服务器本地测试没有问题，在我的浏览器中可以打开页面<br>本地测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl curl -X GET http://localhost:9000</span><br></pre></td></tr></table></figure></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>前人有写过<a href="https://www.aliyun.com/jiaocheng/118555.html?spm=5176.100033.2.5.hkYTKX" target="_blank" rel="noopener">教程</a><br>安装JAVA JDK、Elasticsearch、Mongodb，配置好Graylog，一路顺畅，Graylog顺利启动。<br>服务器本地测试没有问题，在我的浏览器中可以打开页面<br>本地测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET http://localhost:9000</span><br></pre></td></tr></table></figure></p>
 <p>浏览器测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://公网IP:9000</span><br></pre></td></tr></table></figure></p>
-<p>一切顺畅，真是简单啊……<br>但是，在我的浏览器Graylog显示加载完成后，报出服务器不可用的错误。</p>
+<p>一切顺畅，真是简单啊……<br>但是，在我的浏览器Graylog显示加载完成后，报出服务不可用的错误。</p>
 <h2 id="踩的坑"><a href="#踩的坑" class="headerlink" title="踩的坑"></a>踩的坑</h2><p>本以为之前在树莓派上踩过的坑够多，在这云服务器上搭建只是三五分钟的事情。<br>但是这个问题很是匪夷所思，服务器本地测试通过，按道理服务应该是成功启动了。<br>先是检查服务器防火墙问题，然后看阿里云控制台那边，试着将所有端口打开。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getenforce</span><br><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure></p>
 <p>无果……<br>又试着修改Graylog中<code>rest_listen_uri</code>和<code>web_listen_uri</code>的端口和地址。<br>无果……<br>自己不能解决，最后谷歌在官方论坛找到<a href="https://community.graylog.org/t/server-currently-unavailable-error-is-coming-while-trying-to-access-from-browser/503/3" target="_blank" rel="noopener">答案</a></p>
 <blockquote>
