@@ -13,7 +13,7 @@
     
     
     
-    <title>No title | Sevge&#39;s Blog</title>
+    <title>高可用业务集群实验 | Sevge&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -22,7 +22,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="准备工作老惯例，SELINX和IPTABLES先清一下12setenforce 0service firewalld stop 配置最外层的防火墙（路由） 先在虚拟机上添加一块网卡，采用桥接模式 复制/etc/sysconfig/network-script/ifcfg-ens33一份到/etc/sysconfig/network-script/ifcfg-ens37 记得修改其中的内容为ens3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="No title">
+<meta property="og:title" content="高可用业务集群实验">
 <meta property="og:url" content="https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/index.html">
 <meta property="og:site_name" content="Sevge&#39;s Blog">
 <meta property="og:description" content="准备工作老惯例，SELINX和IPTABLES先清一下12setenforce 0service firewalld stop 配置最外层的防火墙（路由） 先在虚拟机上添加一块网卡，采用桥接模式 复制/etc/sysconfig/network-script/ifcfg-ens33一份到/etc/sysconfig/network-script/ifcfg-ens37 记得修改其中的内容为ens3">
@@ -33,9 +33,9 @@
 <meta property="og:image" content="http://imglf3.nosdn0.126.net/img/c09lVS9TR3YrUFoyU01OdGZmc2E3MmdrL2J4ZGlsTEZoRzFRZExHZGRpeUViWVRaTFB2dmFRPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn0.126.net/img/c09lVS9TR3YrUFoyU01OdGZmc2E3N1J6R3ZRdkQ0NWFEQU00SjFrRjhFdUhVOHlHc2hDODdBPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
 <meta property="og:image" content="http://imglf6.nosdn0.126.net/img/c09lVS9TR3YrUFoyU01OdGZmc2E3NnllTkNGTGtKTW9BWlRpWm83UXZNYlJYUFo4eVFhQklnPT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
-<meta property="og:updated_time" content="2018-09-11T00:05:02.001Z">
+<meta property="og:updated_time" content="2018-09-11T00:07:25.690Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="No title">
+<meta name="twitter:title" content="高可用业务集群实验">
 <meta name="twitter:description" content="准备工作老惯例，SELINX和IPTABLES先清一下12setenforce 0service firewalld stop 配置最外层的防火墙（路由） 先在虚拟机上添加一块网卡，采用桥接模式 复制/etc/sysconfig/network-script/ifcfg-ens33一份到/etc/sysconfig/network-script/ifcfg-ens37 记得修改其中的内容为ens3">
 <meta name="twitter:image" content="http://imglf3.nosdn0.126.net/img/c09lVS9TR3YrUFoyU01OdGZmc2E3MkN2YkFkWVBHT2VERVdDTjJuei9ka1A4RjNhZUIrYVd3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0">
     
@@ -111,7 +111,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis"></div>
+        <div class="flex-col header-title ellipsis">高可用业务集群实验</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -133,13 +133,15 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title"></h1>
+        <h1 class="title">高可用业务集群实验</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-09-10T23:20:39.237Z" itemprop="datePublished" class="page-time">
+                <time datetime="2018-09-11T00:47:18.000Z" itemprop="datePublished" class="page-time">
   2018-09-11
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
 
             
         </h5>
@@ -165,11 +167,13 @@
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title"></h1>
+        <h1 class="post-card-title">高可用业务集群实验</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-09-11 07:20:39" datetime="2018-09-10T23:20:39.237Z"  itemprop="datePublished">2018-09-11</time>
+            <time class="post-time" title="2018-09-11 08:47:18" datetime="2018-09-11T00:47:18.000Z"  itemprop="datePublished">2018-09-11</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
 
 
             
@@ -327,7 +331,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=《高可用业务集群实验》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -337,7 +341,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=Sevge's Blog&source=My Blog" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=《高可用业务集群实验》 — Sevge's Blog&source=My Blog" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -347,7 +351,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Sevge's Blog&url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&via=https://sevge.github.io/about" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《高可用业务集群实验》 — Sevge's Blog&url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&via=https://sevge.github.io/about" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -372,21 +376,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/09/29/lol/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">九月心情</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/08/21/her/" id="post-next" class="post-nav-link">
+      <a href="/2018/08/29/lol/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">城市映像@《Her》上海取景地</h4>
+        <h4 class="title">九月心情</h4>
       </a>
     </div>
   
@@ -448,7 +445,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=《No title》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=《高可用业务集群实验》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -458,7 +455,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=《No title》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&title=《高可用业务集群实验》 — Sevge's Blog&source=My Blog" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -468,7 +465,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — Sevge's Blog&url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&via=https://sevge.github.io/about" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《高可用业务集群实验》 — Sevge's Blog&url=https://sevge.github.io/about/2018/09/11/linux-enterprise-cluster/&via=https://sevge.github.io/about" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
