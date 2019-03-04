@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>常用Linux性能分析工具 | Sevge&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="背景　　具备背景知识是分析性能问题时需要了解的。比如硬件 cache；再比如操作系统内核。应用程序的行为细节往往是和这些东西互相牵扯的，这些底层的东西会以意想不到的方式影响应用程序的性能，比如某些程序无法充分利用 cache，从而导致性能下降。比如不必要地调用过多的系统调用，造成频繁的内核 / 用户切换等。这里只是为本文的后续内容做一些铺垫，关于调优还有很多东西，我所不知道的比知道的要多的多，希望">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用Linux性能分析工具">
+<meta property="og:url" content="https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/index.html">
+<meta property="og:site_name" content="Sevge&#39;s Blog">
+<meta property="og:description" content="背景　　具备背景知识是分析性能问题时需要了解的。比如硬件 cache；再比如操作系统内核。应用程序的行为细节往往是和这些东西互相牵扯的，这些底层的东西会以意想不到的方式影响应用程序的性能，比如某些程序无法充分利用 cache，从而导致性能下降。比如不必要地调用过多的系统调用，造成频繁的内核 / 用户切换等。这里只是为本文的后续内容做一些铺垫，关于调优还有很多东西，我所不知道的比知道的要多的多，希望">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/04/kO7pUH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/04/kO7ZqS.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/04/kO7QGn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/04/kO7GrT.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/03/04/kO7UIJ.png">
+<meta property="og:updated_time" content="2019-03-04T09:33:18.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用Linux性能分析工具">
+<meta name="twitter:description" content="背景　　具备背景知识是分析性能问题时需要了解的。比如硬件 cache；再比如操作系统内核。应用程序的行为细节往往是和这些东西互相牵扯的，这些底层的东西会以意想不到的方式影响应用程序的性能，比如某些程序无法充分利用 cache，从而导致性能下降。比如不必要地调用过多的系统调用，造成频繁的内核 / 用户切换等。这里只是为本文的后续内容做一些铺垫，关于调优还有很多东西，我所不知道的比知道的要多的多，希望">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/03/04/kO7pUH.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Sevge&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Sevge</h5>
+          <a href="mailto:sevge6582@gmail.com" title="sevge6582@gmail.com" class="mail">sevge6582@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">常用Linux性能分析工具</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">常用Linux性能分析工具</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-03T09:17:41.000Z" itemprop="datePublished" class="page-time">
+  2019-03-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#性能分析工具"><span class="post-toc-number">2.</span> <span class="post-toc-text">性能分析工具</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#vmstat–虚拟内存统计"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">vmstat–虚拟内存统计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#iostat–用于报告中央处理器统计信息"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">iostat–用于报告中央处理器统计信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#dstat–系统监控工具"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">dstat–系统监控工具</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#iotop–LINUX进程实时监控工具"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">iotop–LINUX进程实时监控工具</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#pidstat–监控系统资源情况"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">pidstat–监控系统资源情况</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#top"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">top</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#htop"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">htop</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#mpstat"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">mpstat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#netstat"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">netstat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ps"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">ps</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#strace"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">strace</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#uptime"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">uptime</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#lsof"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">lsof</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Linux-performance-analysis-tools"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">常用Linux性能分析工具</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-03 17:17:41" datetime="2019-03-03T09:17:41.000Z"  itemprop="datePublished">2019-03-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　具备背景知识是分析性能问题时需要了解的。比如硬件 cache；再比如操作系统内核。应用程序的行为细节往往是和这些东西互相牵扯的，这些底层的东西会以意想不到的方式影响应用程序的性能，比如某些程序无法充分利用 cache，从而导致性能下降。比如不必要地调用过多的系统调用，造成频繁的内核 / 用户切换等。这里只是为本文的后续内容做一些铺垫，关于调优还有很多东西，我所不知道的比知道的要多的多，希望大家能共同学习进步。<br>　　转自：<a href="http://rdc.hundsun.com/portal/article/731.html?ref=myrea" target="_blank" rel="noopener">http://rdc.hundsun.com/portal/article/731.html?ref=myrea</a><br>　　更多参考: <a href="http://www.brendangregg.com/linuxperf.html" target="_blank" rel="noopener">http://www.brendangregg.com/linuxperf.html</a></p>
+<h2 id="性能分析工具"><a href="#性能分析工具" class="headerlink" title="性能分析工具"></a>性能分析工具</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://s2.ax1x.com/2019/03/04/kO7pUH.png" alt="analysis tools" title="">
+                </div>
+                <div class="image-caption">analysis tools</div>
+            </figure>
+<p>上图是Brendan Gregg 的一次性能分析的分享，这里面的所有工具都可以通过man来获得它的帮助文档，下问简单介绍介绍一下常规的用法。</p>
+<h3 id="vmstat–虚拟内存统计"><a href="#vmstat–虚拟内存统计" class="headerlink" title="vmstat–虚拟内存统计"></a>vmstat–虚拟内存统计</h3><p>vmstat(VirtualMeomoryStatistics,虚拟内存统计) 是Linux中监控内存的常用工具,可对操作系统的虚拟内存、进程、CPU等的整体情况进行监视。</p>
+<p>vmstat的常规用法：vmstat interval times即每隔interval秒采样一次，共采样times次，如果省略times,则一直采集数据，直到用户手动停止为止。<br>简单举个例子：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://s2.ax1x.com/2019/03/04/kO7ZqS.png" alt="vmstat" title="">
+                </div>
+                <div class="image-caption">vmstat</div>
+            </figure><br>可以使用ctrl+c停止vmstat采集数据。</p>
+<p>第一行显示了系统自启动以来的平均值，第二行开始显示现在正在发生的情况，接下来的行会显示每5秒间隔发生了什么，每一列的含义在头部，如下所示：</p>
+<ul>
+<li><p>procs：r这一列显示了多少进程在等待cpu，b列显示多少进程正在不可中断的休眠（等待IO）。</p>
+</li>
+<li><p>memory：swapd列显示了多少块被换出了磁盘（页面交换），剩下的列显示了多少块是空闲的（未被使用），多少块正在被用作缓冲区，以及多少正在被用作操作系统的缓存。</p>
+</li>
+<li><p>swap：显示交换活动：每秒有多少块正在被换入（从磁盘）和换出（到磁盘）。</p>
+</li>
+<li><p>io：显示了多少块从块设备读取（bi）和写出（bo）,通常反映了硬盘I/O。</p>
+</li>
+<li><p>system：显示每秒中断(in)和上下文切换（cs）的数量。</p>
+</li>
+<li><p>cpu：显示所有的cpu时间花费在各类操作的百分比，包括执行用户代码（非内核），执行系统代码（内核），空闲以及等待IO。</p>
+</li>
+</ul>
+<p>内存不足的表现：free  memory急剧减少，回收buffer和cacher也无济于事，大量使用交换分区（swpd）,页面交换（swap）频繁，读写磁盘数量（io）增多，缺页中断（in）增多，上下文切换（cs）次数增多，等待IO的进程数（b）增多，大量CPU时间用于等待IO（wa）</p>
+<h3 id="iostat–用于报告中央处理器统计信息"><a href="#iostat–用于报告中央处理器统计信息" class="headerlink" title="iostat–用于报告中央处理器统计信息"></a>iostat–用于报告中央处理器统计信息</h3><p>　　iostat用于报告中央处理器（CPU）统计信息和整个系统、适配器、tty 设备、磁盘和 CD-ROM 的输入/输出统计信息，默认显示了与vmstat相同的cpu使用信息，使用以下命令显示扩展的设备统计：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://s2.ax1x.com/2019/03/04/kO7QGn.png" alt="iostat" title="">
+                </div>
+                <div class="image-caption">iostat</div>
+            </figure></p>
+<p>第一行显示的是自系统启动以来的平均值，然后显示增量的平均值，每个设备一行。</p>
+<p>常见linux的磁盘IO指标的缩写习惯：rq是request,r是read,w是write,qu是queue，sz是size,a是verage,tm是time,svc是service。</p>
+<ul>
+<li><p>rrqm/s和wrqm/s：每秒合并的读和写请求，“合并的”意味着操作系统从队列中拿出多个逻辑请求合并为一个请求到实际磁盘。</p>
+</li>
+<li><p>r/s和w/s：每秒发送到设备的读和写请求数。</p>
+</li>
+<li><p>rsec/s和wsec/s：每秒读和写的扇区数。</p>
+</li>
+<li><p>avgrq –sz：请求的扇区数。</p>
+</li>
+<li><p>avgqu –sz：在设备队列中等待的请求数。</p>
+</li>
+<li><p>await：每个IO请求花费的时间。</p>
+</li>
+<li><p>svctm：实际请求（服务）时间。</p>
+</li>
+<li><p>%util：至少有一个活跃请求所占时间的百分比。</p>
+</li>
+</ul>
+<h3 id="dstat–系统监控工具"><a href="#dstat–系统监控工具" class="headerlink" title="dstat–系统监控工具"></a>dstat–系统监控工具</h3><p>　　dstat显示了cpu使用情况，磁盘io情况，网络发包情况和换页情况，输出是彩色的，可读性较强，相对于vmstat和iostat的输入更加详细且较为直观。在使用时，直接输入命令即可，当然也可以使用特定参数。</p>
+<p>如下：dstat –cdlmnpsy<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://s2.ax1x.com/2019/03/04/kO7GrT.png" alt="dstat" title="">
+                </div>
+                <div class="image-caption">dstat</div>
+            </figure></p>
+<h3 id="iotop–LINUX进程实时监控工具"><a href="#iotop–LINUX进程实时监控工具" class="headerlink" title="iotop–LINUX进程实时监控工具"></a>iotop–LINUX进程实时监控工具</h3><p>　　iotop命令是专门显示硬盘IO的命令，界面风格类似top命令，可以显示IO负载具体是由哪个进程产生的。是一个用来监视磁盘I/O使用状况的top类工具，具有与top相似的UI，其中包括PID、用户、I/O、进程等相关信息。<br>　　可以以非交互的方式使用：iotop –bod interval，查看每个进程的I/O，可以使用pidstat，pidstat –d instat。</p>
+<h3 id="pidstat–监控系统资源情况"><a href="#pidstat–监控系统资源情况" class="headerlink" title="pidstat–监控系统资源情况"></a>pidstat–监控系统资源情况</h3><p>　　pidstat主要用于监控全部或指定进程占用系统资源的情况,如CPU,内存、设备IO、任务切换、线程等。<br>　　使用方法：pidstat –d interval；pidstat还可以用以统计CPU使用信息：pidstat –u interval；统计内存信息：Pidstat –r interval。</p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>top命令的汇总区域显示了五个方面的系统性能信息：</p>
+<ul>
+<li><p>1.负载：时间，登陆用户数，系统平均负载；</p>
+</li>
+<li><p>2.进程：运行，睡眠，停止，僵尸；</p>
+</li>
+<li><p>3.cpu:用户态，核心态，NICE,空闲，等待IO,中断等；</p>
+</li>
+<li><p>4.内存：总量，已用，空闲（系统角度），缓冲，缓存；</p>
+</li>
+<li><p>5.交换分区：总量，已用，空闲</p>
+</li>
+</ul>
+<p>任务区域默认显示：进程ID,有效用户，进程优先级，NICE值，进程使用的虚拟内存，物理内存和共享内存，进程状态，CPU占用率，内存占用率，累计CPU时间，进程命令行信息。</p>
+<h3 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h3><p>htop 是Linux系统中的一个互动的进程查看器,一个文本模式的应用程序(在控制台或者X终端中),需要ncurses。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://s2.ax1x.com/2019/03/04/kO7UIJ.png" alt="htop" title="">
+                </div>
+                <div class="image-caption">htop</div>
+            </figure></p>
+<p>Htop可让用户交互式操作，支持颜色主题，可横向或纵向滚动浏览进程列表，并支持鼠标操作。</p>
+<p>与top相比，htop有以下优点：</p>
+<ul>
+<li><p>可以横向或者纵向滚动浏览进程列表，以便看到所有的进程和完整的命令行。</p>
+</li>
+<li><p>在启动上，比top更快。</p>
+</li>
+<li><p>杀进程时不需要输入进程号。</p>
+</li>
+<li><p>htop支持鼠标操作。</p>
+</li>
+</ul>
+<h3 id="mpstat"><a href="#mpstat" class="headerlink" title="mpstat"></a>mpstat</h3><p>　　mpstat 是Multiprocessor Statistics的缩写，是实时系统监控工具。其报告与CPU的一些统计信息，这些信息存放在/proc/stat文件中。在多CPUs系统里，其不但能查看所有CPU的平均状况信息，而且能够查看特定CPU的信息。常见用法：mpstat –P ALL interval times。</p>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>Netstat用于显示与IP、TCP、UDP和ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况。<br>常见用法：<br>netstat –npl   可以查看你要打开的端口是否已经打开。</p>
+<p>netstat –rn    打印路由表信息。</p>
+<p>netstat –in    提供系统上的接口信息，打印每个接口的MTU,输入分组数，输入错误，输出分组数，输出错误，冲突以及当前的输出队列的长度。</p>
+<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>显示当前进程的状态<br>ps参数太多，具体使用方法可以参考man ps，常用的方法：ps  aux  #hsserver；ps –ef |grep #hundsun</p>
+<ul>
+<li><p>杀掉某一程序的方法：ps  aux | grep mysqld | grep –v grep | awk ‘{print $2 }’ xargs kill -9</p>
+</li>
+<li><p>杀掉僵尸进程：ps –eal | awk ‘{if ($2 == “Z”){print $4}}’ | xargs kill -9</p>
+</li>
+</ul>
+<h3 id="strace"><a href="#strace" class="headerlink" title="strace"></a>strace</h3><p>　　跟踪程序执行过程中产生的系统调用及接收到的信号，帮助分析程序或命令执行中遇到的异常情况。</p>
+<p>举例：查看mysqld在linux上加载哪种配置文件，可以通过运行下面的命令：strace –e stat64 mysqld –print –defaults &gt; /dev/null</p>
+<h3 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h3><p>　　能够打印系统总共运行了多长时间和系统的平均负载，uptime命令最后输出的三个数字的含义分别是1分钟，5分钟，15分钟内系统的平均负荷。</p>
+<h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><p>lsof(list open files)是一个列出当前系统打开文件的工具。通过lsof工具能够查看这个列表对系统检测及排错，常见的用法：</p>
+<p>查看文件系统阻塞  lsof /boot</p>
+<p>查看端口号被哪个进程占用   lsof  -i : 3306</p>
+<p>查看用户打开哪些文件   lsof –u username</p>
+<p>查看进程打开哪些文件   lsof –p  4838</p>
+<p>查看远程已打开的网络链接  lsof –i @192.168.34.128</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　结合以上常用的性能测试命令并联系文初的性能分析工具的图，就可以初步了解到性能分析过程中哪个方面的性能使用哪方面的工具（命令）。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="https://sevge.github.io/about">
+            <img src="/img/avatar.jpg" alt="Sevge">
+            Sevge
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/&title=《常用Linux性能分析工具》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/&title=《常用Linux性能分析工具》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用Linux性能分析工具》 — Sevge's Blog&url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/23/buffer-and-cache/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">缓冲(buffer)与缓存(cache)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Sevge &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/&title=《常用Linux性能分析工具》 — Sevge's Blog&pic=https://sevge.github.io/about/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/&title=《常用Linux性能分析工具》 — Sevge's Blog&source=My Blog" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常用Linux性能分析工具》 — Sevge's Blog&url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/&via=https://sevge.github.io/about" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sevge.github.io/about/2019/03/03/Linux-performance-analysis-tools/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3awU7DMBAE0Pz/T5crErSd8dqhSC8n1ELil4PXzO51xdfj23UtXY8f1/fPk9+fPB0PDw9vL+/x8nrGe73QHJM8Pbn/01eAh4eHd4z3bEfNb50v+vUW367nzd/i4eHhfSTv9ef5PfMDPR4eHt7/4u3avvMD962FAQ8PDy/mJWFEslkn5SQH35q14OHh4a3kAFcSEHzCz0f6e3h4eHjjrnpSJJKCMfk2Lwa/rBYPDw/vAC/fcPPD667hgLWRLzw8PLx7eG0wOi8bay8xb7nh4eHh3cnLF712mM4Px2ujDNfkzeHh4eEFvPyQugbLF53g89eEh4eHd5q3Fg20bbM/uA8eHh7eLbz5wXetrZW89DqMwMPDwzvGa+PX5MGTQ3n7OqJkGg8PD28TL290tVHFPFzIW2hR0cLDw8PbxEsWlzei2mPxZIgqegV4eHh4B3h5WJA/Jt+4JwMKxfEaDw8P7xhvVzs/CljLIYD8YL0YQ+Dh4eHFvHYjbkOBdkRg16gWHh4e3mne2u3adv481MhfejQZgYeHh7fEa8OItjE2CRrWBq3w8PDwTvMmEW1eVPK4IS8kxUwZHh4e3gHeZOiqTU2TEDY/vr95Fh4eHt4xXrusNqJNhgbayDh6NXh4eHgHeHkraw5LClJ77K67fHh4eHgHeLt+bgOFPNSo/woPDw/vGC/ZoNtBgbyo5LFIvk48PDy8e3i7mmGTQav2io7UeHh4eJt4j/LKW1l5wWhHGYpv8fDw8A7w2s03KQZJCWnD3HkIgoeHh7eXd67d1W7W+cvKiw0eHh7eOV4bHKwVhuQ4PgkjfvkEDw8P7wN4xaa8tD/PQ5BRYcDDw8M7duZsB6HyBls+vhCtEA8PD+8YLx+uygOItcZVUhKKyAMPDw/vAG/tH/7J77eMXbEFHh4e3pj3Ba9x5ClouoREAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
