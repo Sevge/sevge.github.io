@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sevge.github.io/about/"/>
-  <updated>2019-03-04T09:33:18.453Z</updated>
+  <updated>2019-03-17T10:13:03.130Z</updated>
   <id>https://sevge.github.io/about/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用frp实现内网穿透</title>
+    <link href="https://sevge.github.io/about/2019/03/17/frp/"/>
+    <id>https://sevge.github.io/about/2019/03/17/frp/</id>
+    <published>2019-03-17T09:35:30.000Z</published>
+    <updated>2019-03-17T10:13:03.130Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>　　人在学校外，想要查学分？想要查成绩？想要上知网？很多时候不想麻烦别人，这个时候就需要自己折腾折腾了。。。<br>　　之前有了解过内网穿透的方式，可以使用ngrok、natapp、autossh，但是我想要的是外网机器最终达到如在内网一样的环境，最终选定了frp。</p><h2 id="关于frp"><a href="#关于frp" class="headerlink" title="关于frp"></a>关于frp</h2><p>　　引一段官网的话：</p><blockquote><p>frp是一个高性能的反向代理应用，可以帮助您轻松地进行内网穿透，对外网提供服务，支持 tcp, http, https 等协议类型，并且 web 服务支持根据域名进行路由转发。</p></blockquote><p>　　我的理解如图：<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s2.ax1x.com/2019/03/17/Aed5ex.jpg" alt="frp" title="">                </div>                <div class="image-caption">frp</div>            </figure></p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul><li>内网机器一台(10.8.<em>.</em>)</li><li>外网机器一台(47.<em>.</em>.<em>)<br>　　<br>　　首先在内网机器(10.8.</em>.*)上搭建好softether服务，可以参照<a href="https://blog.csdn.net/qq_35422558/article/details/78018089" target="_blank" rel="noopener">这里</a>，搭建完成，创建登陆用户、开启虚拟路由器和虚拟DHCP、启用Openvpn克隆server功能，这里我选择UDP类型的2333端口。<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s2.ax1x.com/2019/03/17/AeNjO0.jpg" alt="openvpn" title="">                </div>                <div class="image-caption">openvpn</div>            </figure>　　点击‘为Openvpn Client生成配置样本文件’，保存到本地，修改remote地址为公网服务器地址：<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s2.ax1x.com/2019/03/17/Aea8C4.jpg" alt="config" title="">                </div>                <div class="image-caption">config</div>            </figure></li></ul><h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><h3 id="外网机器-47"><a href="#外网机器-47" class="headerlink" title="外网机器(47...*)"></a>外网机器(47.<em>.</em>.*)</h3><p>　　外网机器作为frp server端，点击<a href="http://diannaobos.iok.la:81/frp/frp-v0.20.0/frp_0.20.0_linux_amd64.tar.gz" target="_blank" rel="noopener">这里</a>下载tar包。wget下来，tar解压，编辑配置文件，如我的frps.ini：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr = 0.0.0.0</span><br><span class="line">bind_port = 7000</span><br><span class="line">auto_token = 123456</span><br><span class="line"></span><br><span class="line">dashboard_port = 7500</span><br><span class="line">dashboard_user = admin</span><br><span class="line">dashboard_pwd = admin</span><br></pre></td></tr></table></figure></p><p>[common]部分是必须有的配置，其中bind_port是自己设定的frp服务端端口，auto_token必须与frpc端配置一致。后三行启用dashboard，可以选择配置。<br>最终启动： <code>nohup ./frps -c ./frps.ini &amp;</code></p><h3 id="内网机器-10-8"><a href="#内网机器-10-8" class="headerlink" title="内网机器(10.8..)"></a>内网机器(10.8.<em>.</em>)</h3><p>　　内网机器作为frp client端，tar包同上。编辑配置文件，如我的frpc.ini：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 47.*.*.*</span><br><span class="line">server_port = 7000</span><br><span class="line">auto_token = 123456</span><br><span class="line"></span><br><span class="line">[ssh]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1 # ssh服务的地址</span><br><span class="line">local_port = 22  # ssh服务的端口</span><br><span class="line">remote_port = 2277 # 最终公网对外开放的ssh端口</span><br><span class="line"></span><br><span class="line">[p2p]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 5555</span><br><span class="line">remote_port = 5555</span><br><span class="line"></span><br><span class="line">[openvp]</span><br><span class="line">type = udp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 2333</span><br><span class="line">remote_port = 2333</span><br></pre></td></tr></table></figure></p><p>　　保存配置，运行frp客户端：<code>nohup ./frpc -c ./frpc.ini &amp;</code></p><h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>　　Done！<br>　　之前试用softether客户端，可以点击连接，但是在分配ip地址时出现问题，而openvpn客户端可以正常连接。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;　　人在学校外，想要查学分？想要查成绩？想要上知网？很多时候不想麻烦别人，这个时候就需要自己折腾折腾了。。。&lt;br&gt;　　之前有了解过内网穿透
+      
+    
+    </summary>
+    
+      <category term="网络" scheme="https://sevge.github.io/about/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>常用Linux性能分析工具</title>
