@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sevge.github.io/about/"/>
-  <updated>2019-06-07T12:35:33.893Z</updated>
+  <updated>2020-04-05T14:36:28.600Z</updated>
   <id>https://sevge.github.io/about/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>喜欢和坚持</title>
+    <link href="https://sevge.github.io/about/2020/04/05/hobby-and-persistence/"/>
+    <id>https://sevge.github.io/about/2020/04/05/hobby-and-persistence/</id>
+    <published>2020-04-05T13:22:26.000Z</published>
+    <updated>2020-04-05T14:36:28.600Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天是2020年4月5日，周日，清明节假期，距离2019年7月10日已经过去270天，经历了漫长的疫情封闭，孤独、迷茫与焦虑环绕在我的心间。</p><p>为什么突然又特地把以前博客内容copy回来呢？偶然翻到了以前的博客，18年、19年，看着github上的提交历史，最远可以追溯到两年前……从博客的措辞来看，以前的我心态乐观，还带一丝丝幽默，这就是无忧无虑环境中孕育出的特质吧。最初写博客，主要是希望找工作时能派上一些用场，偶尔写着，就像写日记一般，其实也没有人来看吧。即使如此，我想，在往前走的时候偶尔也要停下来记录一些东西，就像游戏存档一样，免得时间过去了，再回首好像没有留下过什么东西，仿佛那段时光凭空消失了一般。</p><p>最近又拿起了很久没碰的滑板，滑板真是一个让我又爱又恨的玩意。最初入坑是偶然看到一部滑板片，当时只觉得很酷，我也想要做出那样的动作。滑板买回来以后，玩了两周一个人学会了基础的滑行和荡板，之后立马练习进阶的ollie，但这个动作一直是新手“大杀器”，很多新手卡在这个门槛，随后就让滑板吃灰了。我也不例外。</p><p>正式参与工作以后，宿舍-公司，两点一线的生活让我厌烦，在北京也没有朋友，远在家乡的同学、亲人沟通起来也不能感同身受。我买了一块滑板，在练ollie的过程中，我突然发现周围原来也有同样爱好的人，大家的职业、年龄各异，但是玩到满身汗水坐下来聊天时，那种惬意的感觉是我来北京第一次体会到的。我喜欢滑板，准确的说，我喜欢玩滑板时交到的朋友们，喜欢和朋友们聊天玩耍，喜欢玩到筋疲力尽时的畅快，喜欢躺在地板上休息时的放松。</p><p>玩了一年多滑板了，ollie基本能跳了，但是仍然不敢过障碍，有时我也会想，我是不是练习的时间不够？我是不是不够聪明？我是不是年龄大了？？？！！！搬家到海淀，离开了望京的滑板好友们，一个人真的很难坚持下去，孤独、工作压力是我迈不过去的槛，最近这段日子我也在想，我的年龄似乎真的也大了，20岁以前我没想过以后，现在我不敢想以后。</p><p>春天到了，天气转暖，到用友科技园继续磕ollie。一个人，周围也有玩小滑板的小孩。以前看过一篇文章，说“坚持”其实是一个贬义词，只有不喜欢的事情才会去“坚持”，只有目标不明确才会去“坚持”，只有不太聪明的人才会“坚持”。我想我现在就是这种坚持吧，因为我现在也说不上喜欢滑板了，练好ollie似乎也不能得到什么，只是心中的一股执念让我去完成这项使命。今天摔了一跤，真的很痛，心情很down，自己爬起来继续练习。</p><p>在孤独、迷茫与焦虑中，我抓不到任何东西。离开这里，我能去哪？我能干啥？我真正喜欢的是什么？</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天是2020年4月5日，周日，清明节假期，距离2019年7月10日已经过去270天，经历了漫长的疫情封闭，孤独、迷茫与焦虑环绕在我的心间。&lt;/p&gt;
+&lt;p&gt;为什么突然又特地把以前博客内容copy回来呢？偶然翻到了以前的博客，18年、19年，看着github上的提交历史，最远
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://sevge.github.io/about/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>线性回归上证指数</title>
+    <link href="https://sevge.github.io/about/2020/04/05/sz_index/"/>
+    <id>https://sevge.github.io/about/2020/04/05/sz_index/</id>
+    <published>2020-04-05T13:22:26.000Z</published>
+    <updated>2020-04-05T14:42:02.180Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>巴菲特曾经这样描述过价值投资，他说价值投资就好像一个人牵着一条小狗去散步一般。有时候这条小狗会跑到人的前面，而有的时候这条小狗会跑到人的后面，但是最终这条小狗始终会回到人的身边。<br>大道至简，用最基本的线性回归预测一下上证指数2020年的走势。</p><h1 id="数据支撑"><a href="#数据支撑" class="headerlink" title="数据支撑"></a>数据支撑</h1><p>从<a href="http://quotes.money.163.com/trade/lsjysj_zhishu_000001.html" target="_blank" rel="noopener">网易财经</a>下载得到上证指数历史数据，仅使用每日收盘价。</p><h1 id="无干预预测"><a href="#无干预预测" class="headerlink" title="无干预预测"></a>无干预预测</h1><p>第7200个交易日的预测价格：3454.41<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://imgchr.com/i/GrK4IO" alt="pic1" title="">                </div>                <div class="image-caption">pic1</div>            </figure></p><h1 id="人工干预预测"><a href="#人工干预预测" class="headerlink" title="人工干预预测"></a>人工干预预测</h1><p>干预2008年、2015年泡沫为均值<br>第7200个交易日的预测价格：3238.38<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://imgchr.com/i/GrKhdK" alt="pic2" title="">                </div>                <div class="image-caption">pic2</div>            </figure></p><h1 id="根据gdp增速预测"><a href="#根据gdp增速预测" class="headerlink" title="根据gdp增速预测"></a>根据gdp增速预测</h1><p>2015年泡沫后2016年2月谷底2688点，距今4年，按<a href="http://data.eastmoney.com/cjsj/gdp.html" target="_blank" rel="noopener">东方财富</a>的历史gdp数据<br>2688*1.067*1.069*1.066*1.0610=3467<br>2008年泡沫后谷底11月1717点<br>1717*1.094*1.106*1.095*1.079*1.078*1.073*1.069*1.067*1.069*1.066*1.0610=3915</p><h1 id="定投策略"><a href="#定投策略" class="headerlink" title="定投策略"></a>定投策略</h1><p>目前未考虑止盈（还远着）<br>买入策略：<br>（当前指数-2780**4/800，$index_correlations 2780为一个基准值，该值越大越乐观，即在当前指数较高时仍会买入较多,800代表震荡区间，该值越大买入越谨慎<br>（当前跌幅/历史跌幅） $change 这里历史跌幅取排序后20分位，即每5天可能出现一个的跌幅，一周买入一次<br>$confidence 自主设置<br>$base 投入基数与以上变量求积，得到的结果即最终买入</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;巴菲特曾经这样描述过价值投资，他说价值投资就好像一个人牵着一条小狗去散步一般。有时候这条小狗会跑到人的前面，而有的时候这条小狗会跑到人的后面
+      
+    
+    </summary>
+    
+      <category term="投资" scheme="https://sevge.github.io/about/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>海量数据面试题</title>
@@ -322,13 +369,20 @@
   </entry>
   
   <entry>
-    <title>shamo500</title>
+    <title>和莎莫的500天</title>
     <link href="https://sevge.github.io/about/2018/04/13/shamo500/"/>
     <id>https://sevge.github.io/about/2018/04/13/shamo500/</id>
     <published>2018-04-13T04:22:26.000Z</published>
-    <updated>2018-04-13T05:00:33.979Z</updated>
+    <updated>2020-04-05T13:06:29.786Z</updated>
+    
+    <content type="html"><![CDATA[<p>男生以为有一种东西叫做fate。有一种情感可以被形容为love。有一种邂逅是meant to be。<br>所以当Tom看到Summer的时候，他真真切切的告诉自己，这个人就是自己一生的挚爱。<br>他傻傻的用留恋的目光追随她的影子。他惶恐不安的揣测她的每一个phrase。他不可自拔的沦陷了。<br>于是关于她的一切都是美好的。<br>黑色的头发。说话前抿一下嘴巴。胸口心形的胎记。笑起来咯咯的声音。沉沉的睡过去的样子。<br>甚至连周围一切的景观都被他主观的赋予了鲜艳的色彩。<br>世界不复存在，只有你。</p><p>女生从来不相信关于爱情的童话。一切都只是虚幻的感情。没有什么是fate。没有什么可以被形容为true love。没有一种偶遇是meant to be。<br>relationship的意义只是have fun。仅此而已。<br>于是当他们在Ikea里面开心的玩闹的时候，她会认真的跟他说，well…I don’t wanna get into something serious…is that ok?<br>Tom苦涩的笑了，但还是很快的说了sure。因为他还是抱有幻想，有一天Summer心里的那堵墙终于会因为自己而坍塌。只是因为自己。<br>所以当Summer把他带到属于自己的空间里的时候，他天真的以为自己终于把那堵墙无声无息的敲碎了。<br>所以当Summer跟他说I have never told anyone else before，他几乎百分之百的肯定，自己在对方心中也是以同样的地位存在。</p><p>然而幻想终究只是幻想。</p><p>Tom: I just wanna know….what are we?<br>Summer: I don’t know….well I don’t care. I’m happy, aren’t you happy?<br>Tom: …yea..I am happy.</p><p>300天之后，不安终于变的强烈起来。</p><p>不再因为水槽的笑话而大笑。不再因为喜欢同一个歌手而欣喜。不再放肆的比赛讲粗口。<br>于是关于她的一切都变的令人厌恶。<br>黑色的头发。说话前抿一下嘴巴。胸口心形的胎记。笑起来咯咯的声音。沉沉的睡过去的样子。</p><p>终于还是分手了。原因不明。<br>这一段被认定是命中注定的恋情，终于痛苦的，不堪的，结束了。<br>然而故事并没有完。</p><p>500天，他们再次重逢。<br>男生终于意识到，原来真的没有什么是fate。没有什么可以被形容为true love。没有一种偶遇是meant to be。<br>女生却突然醒悟，其实有一种东西叫做fate。有一种情感可以被形容为love。有一种邂逅是meant to be。<br>多么的讽刺。同样一段恋情，却让两个人走上了截然不同的道路。<br>Tom在黑板上涂满了理想中建筑的设计图。<br>Summer却戴上了别人递过来的钻戒。</p><p>其实又何必去追究是不是有fate,true love, or meant to be呢。<br>或者说其实人都是这样天真的生物。<br>当自己沉浸在热恋中的时候，就会坚定的相信自己的感情很真实很坚定很持久。<br>但是一旦破裂了，便会灰心丧气，一瞬间觉得一切关于爱情的描述都应该去死。<br>其实一切的一切只是在于你自己而已。<br>我们真正爱的，只是我们自己而已。<br>所以归根到底，对于爱情的态度只是为了自我安慰。<br>现在我爱你所以一定是真爱一定能坚持很久一定可以击退一切困难。<br>现在我不爱你了所以爱情其实只是谎言不可能有什么天长地久。<br>而当下一个人出现的时候，很有可能我们又会很没出息的回到之前的mindset。</p><p>这样的cycle是不是很可笑呢。</p><p>真的不用把自己的情感分析的那么清晰透彻的。又不要你交report。<br>有的时候真的不用去想what are we。谁知道会不会一觉醒来就突然想结婚了呢。<br>也不用把失恋当成世界末日拼死拼活的叫喊着就是这个人除了这个人我再也不会爱上其他人。<br>因为When Summer is gone, Autumn is here.</p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;男生以为有一种东西叫做fate。有一种情感可以被形容为love。有一种邂逅是meant to be。&lt;br&gt;所以当Tom看到Summer的时候，他真真切切的告诉自己，这个人就是自己一生的挚爱。&lt;br&gt;他傻傻的用留恋的目光追随她的影子。他惶恐不安的揣测她的每一个phrase。
+      
     
     </summary>
     
