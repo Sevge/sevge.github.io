@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sevge.github.io/about/"/>
-  <updated>2020-04-05T14:36:28.600Z</updated>
+  <updated>2020-04-17T15:35:41.275Z</updated>
   <id>https://sevge.github.io/about/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>值班心情</title>
+    <link href="https://sevge.github.io/about/2020/04/17/baidu-work/"/>
+    <id>https://sevge.github.io/about/2020/04/17/baidu-work/</id>
+    <published>2020-04-16T20:24:18.000Z</published>
+    <updated>2020-04-17T15:35:41.275Z</updated>
+    
+    <content type="html"><![CDATA[<p>记于第一次值周</p><p>深夜思绪万千，却发现根本找不到人倾诉，这就是北漂么？</p><p>大厂能镀金？以后好跳槽？朋友和亲人的一致称赞？这种外界的认可可能是我唯一在这里坚持的原因了……</p><p>真正的工作感受只有自己知道。</p><p>扫地打杂般的工作，平日工作压榨了我极大部分的时间，周一到周五从醒来脑子里就围绕着工作在转，晚上十点多到家洗洗也该睡了，要命的是值周时周末也不能好好放松。</p><p>以前的一些爱好，现在对我来说都是奢侈品，每天过得没有一点盼头，活像一台工作机器……</p><p>来这里五个月了，从第一个月的不适应，到现在的痛苦、焦虑、自我怀疑，我想这个地方打一开始就不适合我。</p><p>从早到晚，手机电脑一直叮咚叮咚地响，一度让我到奔溃边缘。现在是凌晨四点，再度被傻逼电话闹醒，很想砸键盘。</p><p>人生所有的痛苦与纠结，都是因为还有无数明天。如果没有的话，我现在就裸辞，太不开心了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;记于第一次值周&lt;/p&gt;
+&lt;p&gt;深夜思绪万千，却发现根本找不到人倾诉，这就是北漂么？&lt;/p&gt;
+&lt;p&gt;大厂能镀金？以后好跳槽？朋友和亲人的一致称赞？这种外界的认可可能是我唯一在这里坚持的原因了……&lt;/p&gt;
+&lt;p&gt;真正的工作感受只有自己知道。&lt;/p&gt;
+&lt;p&gt;扫地打杂般的工作，平日
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://sevge.github.io/about/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>喜欢和坚持</title>
@@ -45,9 +72,9 @@
     <link href="https://sevge.github.io/about/2020/04/05/sz_index/"/>
     <id>https://sevge.github.io/about/2020/04/05/sz_index/</id>
     <published>2020-04-05T13:22:26.000Z</published>
-    <updated>2020-04-05T14:47:53.731Z</updated>
+    <updated>2020-04-05T15:16:50.566Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>巴菲特曾经这样描述过价值投资，他说价值投资就好像一个人牵着一条小狗去散步一般。有时候这条小狗会跑到人的前面，而有的时候这条小狗会跑到人的后面，但是最终这条小狗始终会回到人的身边。<br>大道至简，用最基本的线性回归预测一下上证指数2020年的走势。</p><h1 id="数据支撑"><a href="#数据支撑" class="headerlink" title="数据支撑"></a>数据支撑</h1><p>从<a href="http://quotes.money.163.com/trade/lsjysj_zhishu_000001.html" target="_blank" rel="noopener">网易财经</a>下载得到上证指数历史数据，仅使用每日收盘价。</p><h1 id="无干预预测"><a href="#无干预预测" class="headerlink" title="无干预预测"></a>无干预预测</h1><p>第7200个交易日的预测价格：3454.41<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s1.ax1x.com/2020/04/05/GrK4IO.png" alt="GrK4IO.png" title="">                </div>                <div class="image-caption">GrK4IO.png</div>            </figure></p><h1 id="人工干预预测"><a href="#人工干预预测" class="headerlink" title="人工干预预测"></a>人工干预预测</h1><p>干预2008年、2015年泡沫为均值<br>第7200个交易日的预测价格：3238.38<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://s1.ax1x.com/2020/04/05/GrKhdK.png" alt="GrKhdK.png" title="">                </div>                <div class="image-caption">GrKhdK.png</div>            </figure></p><h1 id="根据gdp增速预测"><a href="#根据gdp增速预测" class="headerlink" title="根据gdp增速预测"></a>根据gdp增速预测</h1><p>2015年泡沫后2016年2月谷底2688点，距今4年，按<a href="http://data.eastmoney.com/cjsj/gdp.html" target="_blank" rel="noopener">东方财富</a>的历史gdp数据<br>2688*1.067*1.069*1.066*1.0610=3467<br>2008年泡沫后谷底11月1717点<br>1717*1.094*1.106*1.095*1.079*1.078*1.073*1.069*1.067*1.069*1.066*1.0610=3915</p><h1 id="定投策略"><a href="#定投策略" class="headerlink" title="定投策略"></a>定投策略</h1><p>目前未考虑止盈（还远着）<br>买入策略：<br>（当前指数-2780**4/800，$index_correlations 2780为一个基准值，该值越大越乐观，即在当前指数较高时仍会买入较多,800代表震荡区间，该值越大买入越谨慎<br>（当前跌幅/历史跌幅） $change 这里历史跌幅取排序后20分位，即每5天可能出现一个的跌幅，一周买入一次<br>$confidence 自主设置<br>$base 投入基数与以上变量求积，得到的结果即最终买入</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>巴菲特曾经这样描述过价值投资，他说价值投资就好像一个人牵着一条小狗去散步一般。有时候这条小狗会跑到人的前面，而有的时候这条小狗会跑到人的后面，但是最终这条小狗始终会回到人的身边。<br>大道至简，用最基本的线性回归预测一下上证指数2020年的走势。</p><h1 id="数据支撑"><a href="#数据支撑" class="headerlink" title="数据支撑"></a>数据支撑</h1><p>从<a href="http://quotes.money.163.com/trade/lsjysj_zhishu_000001.html" target="_blank" rel="noopener">网易财经</a>下载得到上证指数历史数据，仅使用每日收盘价。</p><h1 id="无干预预测"><a href="#无干预预测" class="headerlink" title="无干预预测"></a>无干预预测</h1><p>第7200个交易日的预测价格：3454.41<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://imgchr.com/i/GrK4IO" alt="pic1" title="">                </div>                <div class="image-caption">pic1</div>            </figure></p><h1 id="人工干预预测"><a href="#人工干预预测" class="headerlink" title="人工干预预测"></a>人工干预预测</h1><p>干预2008年、2015年泡沫为均值<br>第7200个交易日的预测价格：3238.38<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://imgchr.com/i/GrKhdK" alt="pic2" title="">                </div>                <div class="image-caption">pic2</div>            </figure></p><h1 id="根据gdp增速预测"><a href="#根据gdp增速预测" class="headerlink" title="根据gdp增速预测"></a>根据gdp增速预测</h1><p>2015年泡沫后2016年2月谷底2688点，距今4年，按<a href="http://data.eastmoney.com/cjsj/gdp.html" target="_blank" rel="noopener">东方财富</a>的历史gdp数据<br>2688*1.067*1.069*1.066*1.0610=3467<br>2008年泡沫后谷底11月1717点<br>1717*1.094*1.106*1.095*1.079*1.078*1.073*1.069*1.067*1.069*1.066*1.0610=3915</p><h1 id="定投策略"><a href="#定投策略" class="headerlink" title="定投策略"></a>定投策略</h1><p>目前未考虑止盈（还远着）<br>买入策略：<br>（当前指数 - 2780 \ **4/800，$index_correlations 2780为一个基准值，该值越大越乐观，即在当前指数较高时仍会买入较多,800代表震荡区间，该值越大买入越谨慎<br>（当前跌幅/历史跌幅） $change 这里历史跌幅取排序后20分位，即每5天可能出现一个的跌幅，一周买入一次<br>$confidence 自主设置<br>$base 投入基数与以上变量求积，得到的结果即最终买入</p>]]></content>
     
     <summary type="html">
     
